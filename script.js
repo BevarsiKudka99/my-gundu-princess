@@ -4,16 +4,16 @@
 
 // HARDCODED CREDENTIALS - EDIT THESE TO CHANGE LOGIN
 const VALID_CREDENTIALS = {
-    username: 'admin',
-    password: 'password123'
+    username: 'a',
+    password: 'a'
 };
 
 const galleryData = {
     us: {
-        name: 'Us',
+        name: 'A journey of love and laughter',
         emoji: '💑',
         video: 'videosUs/memories.mp4',
-        videoTitle: 'Us',
+        videoTitle: 'Gundu and Teddy',
         sections: [
             {
                 title: 'First 3 Months',
@@ -201,6 +201,7 @@ const galleryData = {
 // ============================================
 const loadingScreen = document.getElementById('loadingScreen');
 const authScreen = document.getElementById('authScreen');
+const loadingSignInBtn = document.getElementById('loadingSignInBtn');
 const profileScreen = document.getElementById('profileScreen');
 const mainContent = document.getElementById('mainContent');
 const profileCards = document.querySelectorAll('.profile-card');
@@ -217,6 +218,9 @@ const viewerBackBtn = document.querySelector('.viewer-back-btn');
 const viewerPrevBtn = document.querySelector('.viewer-prev-btn');
 const viewerNextBtn = document.querySelector('.viewer-next-btn');
 const profilesBtn = document.getElementById('profilesBtn');
+const profileDropdown = document.getElementById('profileDropdown');
+const profileDropdownItems = document.querySelectorAll('.profile-dropdown-item');
+const profileSelectorImg = document.getElementById('profileSelectorImg');
 const viewToggleBtns = document.querySelectorAll('.view-btn');
 
 // Auth elements
@@ -238,6 +242,15 @@ const sectionPaginationState = {};  // Track pagination for each section
 // ============================================
 // EVENT LISTENERS
 // ============================================
+
+// Loading Screen Sign In Button
+loadingSignInBtn.addEventListener('click', () => {
+    loadingScreen.style.animation = 'slideOutUp 0.6s ease-in forwards';
+    setTimeout(() => {
+        loadingScreen.classList.add('hidden');
+        authScreen.classList.remove('hidden');
+    }, 300);
+});
 
 // Auth Form Submission
 authForm.addEventListener('submit', (e) => {
@@ -312,8 +325,28 @@ videoProgress.addEventListener('input', (e) => {
     });
 });
 
-// Profiles Button - Return to Profile Selection
-profilesBtn.addEventListener('click', backToProfiles);
+// Profiles Button - Toggle Profile Dropdown
+profilesBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    profileDropdown.classList.toggle('hidden');
+});
+
+// Profile Dropdown Item Selection
+profileDropdownItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const profileKey = item.dataset.profile;
+        selectProfile(profileKey);
+        profileDropdown.classList.add('hidden');
+    });
+});
+
+// Close dropdown when clicking outside
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.profile-selector-wrapper')) {
+        profileDropdown.classList.add('hidden');
+    }
+});
 
 // Image Viewer Navigation
 viewerBackBtn.addEventListener('click', closeImageViewer);
@@ -392,7 +425,19 @@ function selectProfile(profileKey) {
         mainContent.classList.remove('hidden');
         
         loadProfile(profileKey);
+        updateProfileSelectorImage(profileKey);
     }, 300);
+}
+
+/**
+ * Update the profile image in the navbar selector
+ */
+function updateProfileSelectorImage(profileKey) {
+    const profileImages = {
+        'me': 'Logos/profileMe.jpg',
+        'us': 'Logos/profileUs.jpg'
+    };
+    profileSelectorImg.src = profileImages[profileKey];
 }
 
 /**

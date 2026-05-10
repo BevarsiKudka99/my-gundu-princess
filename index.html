@@ -9,15 +9,16 @@
 <body>
     <!-- Loading Screen with Logo -->
     <div id="loadingScreen" class="loading-screen">
+        <button id="loadingSignInBtn" class="loading-signin-top-btn">Sign In</button>
         <div class="logo-container">
-            <img src="imagesMe/Netflix-Logo.jpg" class="logo" alt="Netflix Logo">
+            <img src="Logos/Netflix.png" class="logo" alt="Netflix Logo">
         </div>
     </div>
 
     <!-- Sign-In Screen -->
     <div id="authScreen" class="auth-screen">
         <div class="auth-header">
-            <img src="imagesMe/Netflix-Logo.jpg" class="auth-logo-top" alt="Netflix Logo">
+            <img src="Logos/Netflix-Logo.jpg" class="auth-logo-top" alt="Netflix Logo">
         </div>
         
         <div class="auth-main">
@@ -64,13 +65,13 @@
 
         <div class="profiles-container">
             <div class="profile-card" data-profile="me">
-                <img src="imagesMe/profileMe.jpg" class="profile-image" alt="Me">
+                <img src="Logos/profileMe.jpg" class="profile-image" alt="Me">
                 <p class="profile-name">Me</p>
             </div>
 
             <div class="profile-card" data-profile="us">
-                <img src="imagesMe/profileUs.jpg" class="profile-image" alt="Us">
-                <p class="profile-name">Us</p>
+                <img src="Logos/profileUs.jpg" class="profile-image" alt="Us">
+                <p class="profile-name">Gundu and Teddy</p>
             </div>
         </div>
 
@@ -82,13 +83,30 @@
         <!-- Navigation -->
         <nav class="navbar">
             <div class="navbar-left">
-                <button id="profilesBtn" class="profiles-btn">Profiles</button>
+                <div class="navbar-branding">
+                    <img src="Logos/Netflix-Logo.jpg" class="navbar-logo" alt="Netflix Logo">
+                    <span class="logo-small">Birthday Edition</span>
+                </div>
             </div>
             <div id="sectionButtons" class="section-buttons">
                 <!-- Buttons will be dynamically generated here -->
             </div>
             <div class="navbar-right">
-                <span class="logo-small">Birthday Edition</span>
+                <div class="profile-selector-wrapper">
+                    <button id="profilesBtn" class="profile-selector-btn">
+                        <img id="profileSelectorImg" src="" alt="Current Profile" class="profile-selector-img">
+                    </button>
+                    <div id="profileDropdown" class="profile-dropdown hidden">
+                        <button class="profile-dropdown-item" data-profile="me">
+                            <img src="Logos/profileMe.jpg" alt="Me" class="dropdown-profile-img">
+                            <span>Me</span>
+                        </button>
+                        <button class="profile-dropdown-item" data-profile="us">
+                            <img src="Logos/profileUs.jpg" alt="Us" class="dropdown-profile-img">
+                            <span>Gundu and Teddy</span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </nav>
 
