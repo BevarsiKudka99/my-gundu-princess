@@ -74,87 +74,43 @@ const galleryData = {
         ],
         eventSections: [
             {
-                title: 'Birthday Celebrations',
+                title: 'OIA',
+                id: 'oia',
+                items: [
+                    { id: 1, src: 'imagesUs/memories1.jpeg', title: 'OIA Memory 1' },
+                    { id: 2, src: 'imagesUs/memories2.jpeg', title: 'OIA Memory 2' },
+                    { id: 3, src: 'imagesUs/memories3.jpeg', title: 'OIA Memory 3' },
+                    { id: 4, src: 'imagesUs/memories4.jpeg', title: 'OIA Memory 4' },
+                ]
+            },
+            {
+                title: 'Cute Date',
+                id: 'cute_date',
+                items: [
+                    { id: 1, src: 'imagesUs/memories1.jpeg', title: 'Cute Date 1' },
+                    { id: 2, src: 'imagesUs/memories2.jpeg', title: 'Cute Date 2' },
+                    { id: 3, src: 'imagesUs/memories3.jpeg', title: 'Cute Date 3' },
+                    { id: 4, src: 'imagesUs/memories4.jpeg', title: 'Cute Date 4' },
+                ]
+            },
+            {
+                title: 'Sensitive',
+                id: 'sensitive',
+                items: [
+                    { id: 1, src: 'imagesUs/memories1.jpeg', title: 'Sensitive 1' },
+                    { id: 2, src: 'imagesUs/memories2.jpeg', title: 'Sensitive 2' },
+                    { id: 3, src: 'imagesUs/memories3.jpeg', title: 'Sensitive 3' },
+                    { id: 4, src: 'imagesUs/memories4.jpeg', title: 'Sensitive 4' },
+                ]
+            },
+            {
+                title: 'Birthday',
                 id: 'birthday',
                 items: [
-                    { id: 1, src: 'imagesUs/memories1.jpeg', title: 'Your Birthday Surprise' },
-                    { id: 2, src: 'imagesUs/memories2.jpeg', title: 'Cake Cutting' },
-                    { id: 3, src: 'imagesUs/memories3.jpeg', title: 'Party with Friends' },
-                    { id: 4, src: 'imagesUs/memories4.jpeg', title: 'Birthday Hug' },
-                    { id: 5, src: 'imagesUs/memories1.jpeg', title: 'Candles' },
-                    { id: 6, src: 'imagesUs/memories2.jpeg', title: 'Celebration Moment' },
-                    { id: 7, src: 'imagesUs/memories3.jpeg', title: 'Happy Smile' },
-                    { id: 8, src: 'imagesUs/memories4.jpeg', title: 'Party Night' },
-                ]
-            },
-            {
-                title: 'Anniversaries',
-                id: 'anniversaries',
-                items: [
-                    { id: 1, src: 'imagesUs/memories1.jpeg', title: '1st Anniversary' },
-                    { id: 2, src: 'imagesUs/memories2.jpeg', title: '100 Days Together' },
-                    { id: 3, src: 'imagesUs/memories3.jpeg', title: 'Special Dinner' },
-                    { id: 4, src: 'imagesUs/memories4.jpeg', title: 'Rose Petals' },
-                    { id: 5, src: 'imagesUs/memories1.jpeg', title: 'Champagne Toast' },
-                    { id: 6, src: 'imagesUs/memories2.jpeg', title: 'Romantic Evening' },
-                    { id: 7, src: 'imagesUs/memories3.jpeg', title: 'Dancing Together' },
-                    { id: 8, src: 'imagesUs/memories4.jpeg', title: 'Forever Moment' },
-                ]
-            },
-            {
-                title: 'Holidays',
-                id: 'holidays',
-                items: [
-                    { id: 1, src: 'imagesUs/memories1.jpeg', title: 'Christmas Celebration' },
-                    { id: 2, src: 'imagesUs/memories2.jpeg', title: 'New Year Party' },
-                    { id: 3, src: 'imagesUs/memories3.jpeg', title: 'Diwali Lights' },
-                    { id: 4, src: 'imagesUs/memories4.jpeg', title: 'Holiday Dinner' },
-                    { id: 5, src: 'imagesUs/memories1.jpeg', title: 'Festive Wear' },
-                    { id: 6, src: 'imagesUs/memories2.jpeg', title: 'Decorations' },
-                    { id: 7, src: 'imagesUs/memories3.jpeg', title: 'Holiday Spirit' },
-                    { id: 8, src: 'imagesUs/memories4.jpeg', title: 'Celebration' },
-                ]
-            },
-            {
-                title: 'Trips & Adventures',
-                id: 'trips',
-                items: [
-                    { id: 1, src: 'imagesUs/memories1.jpeg', title: 'Mountain Trek' },
-                    { id: 2, src: 'imagesUs/memories2.jpeg', title: 'Beach Getaway' },
-                    { id: 3, src: 'imagesUs/memories3.jpeg', title: 'City Exploration' },
-                    { id: 4, src: 'imagesUs/memories4.jpeg', title: 'Roadtrip' },
-                    { id: 5, src: 'imagesUs/memories1.jpeg', title: 'Waterfall Discovery' },
-                    { id: 6, src: 'imagesUs/memories2.jpeg', title: 'Sunset View' },
-                    { id: 7, src: 'imagesUs/memories3.jpeg', title: 'Adventure Selfie' },
-                    { id: 8, src: 'imagesUs/memories4.jpeg', title: 'Travel Memories' },
-                ]
-            },
-            {
-                title: 'Dinner Dates',
-                id: 'dinners',
-                items: [
-                    { id: 1, src: 'imagesUs/memories1.jpeg', title: 'Fine Dining' },
-                    { id: 2, src: 'imagesUs/memories2.jpeg', title: 'Italian Restaurant' },
-                    { id: 3, src: 'imagesUs/memories3.jpeg', title: 'Street Food Adventure' },
-                    { id: 4, src: 'imagesUs/memories4.jpeg', title: 'Rooftop Dinner' },
-                    { id: 5, src: 'imagesUs/memories1.jpeg', title: 'Candlelight Dinner' },
-                    { id: 6, src: 'imagesUs/memories2.jpeg', title: 'Wine Tasting' },
-                    { id: 7, src: 'imagesUs/memories3.jpeg', title: 'Dessert Time' },
-                    { id: 8, src: 'imagesUs/memories4.jpeg', title: 'After Dinner Walk' },
-                ]
-            },
-            {
-                title: 'Movie Nights',
-                id: 'movies',
-                items: [
-                    { id: 1, src: 'imagesUs/memories1.jpeg', title: 'Cinema Date' },
-                    { id: 2, src: 'imagesUs/memories2.jpeg', title: 'Popcorn Time' },
-                    { id: 3, src: 'imagesUs/memories3.jpeg', title: 'Cozy Night In' },
-                    { id: 4, src: 'imagesUs/memories4.jpeg', title: 'Movie Theater' },
-                    { id: 5, src: 'imagesUs/memories1.jpeg', title: 'Home Cinema Setup' },
-                    { id: 6, src: 'imagesUs/memories2.jpeg', title: 'Blanket Cuddles' },
-                    { id: 7, src: 'imagesUs/memories3.jpeg', title: 'Late Night Movies' },
-                    { id: 8, src: 'imagesUs/memories4.jpeg', title: 'Movie Night Snacks' },
+                    { id: 1, src: 'imagesUs/memories1.jpeg', title: 'Birthday 1' },
+                    { id: 2, src: 'imagesUs/memories2.jpeg', title: 'Birthday 2' },
+                    { id: 3, src: 'imagesUs/memories3.jpeg', title: 'Birthday 3' },
+                    { id: 4, src: 'imagesUs/memories4.jpeg', title: 'Birthday 4' },
                 ]
             }
         ]
@@ -232,7 +188,7 @@ const authError = document.getElementById('authError');
 // STATE MANAGEMENT
 // ============================================
 let currentProfile = null;
-let currentView = 'date';  // 'date' or 'events'
+let currentView = 'events';  // 'date' or 'events' - DEFAULT SET TO EVENTS
 let allItemsFlat = [];  // Flat array of all items for viewer navigation
 let currentViewerIndex = -1;
 let currentViewerSectionId = null;
@@ -916,7 +872,7 @@ function backToProfiles() {
     profileScreen.classList.remove('hidden');
     profileScreen.style.animation = 'none';
     currentProfile = null;
-    currentView = 'date';  // Reset to default view
+    currentView = 'events';  // Reset to default view (EVENTS)
     allItemsFlat = [];
     currentViewerIndex = -1;
 }

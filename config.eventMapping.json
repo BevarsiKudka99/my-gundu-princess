@@ -1,0 +1,32 @@
+{
+  "cloudinaryCloudName": "YOUR_CLOUDINARY_CLOUD_NAME",
+  "cloudinaryUploadPreset": "YOUR_UPLOAD_PRESET",
+  "mediaFolder": "C:\\Path\\To\\Your\\Media\\Uploads",
+  "events": {
+    "OIA": {
+      "folderName": "OIA",
+      "profile": "us",
+      "displayName": "OIA"
+    },
+    "CuteDate": {
+      "folderName": "Cute_Date",
+      "profile": "us",
+      "displayName": "Cute Date"
+    },
+    "Sensitive": {
+      "folderName": "Sensitive",
+      "profile": "us",
+      "displayName": "Sensitive"
+    },
+    "Birthday": {
+      "folderName": "Birthday",
+      "profile": "us",
+      "displayName": "Birthday"
+    }
+  },
+  "supportedFormats": ["jpg", "jpeg", "png", "webp", "gif", "mp4", "mov", "webm"],
+  "namingFormat": "EventName_mediaNumber_yymmdd",
+  "namingExample": "OIA_2_250515.jpeg",
+  "cloudinaryBaseUrl": "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload",
+  "notes": "Replace YOUR_CLOUDINARY_CLOUD_NAME and YOUR_UPLOAD_PRESET with your actual Cloudinary credentials"
+}
