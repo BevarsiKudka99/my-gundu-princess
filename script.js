@@ -1,4 +1,4 @@
-// ============================================
+﻿// ============================================
 // DATA STRUCTURE - EASILY CUSTOMIZABLE
 // ============================================
 
@@ -11,163 +11,248 @@ const VALID_CREDENTIALS = {
 const galleryData = {
     us: {
         name: 'A journey of love and laughter',
-        emoji: '💑',
-        video: 'videosUs/memories.mp4',
-        videoPoster: 'videosUs/poster.png',
-        videoTitle: '',
-        description: 'A journey of love, laughter, and unforgettable memories. Every moment we share together tells a story worth remembering forever.',
-        rating: 'U/A 18+',
-        rank: '#1 in Memories Today',
-        year: '2025',
-        duration: 'Ongoing',
-        warnings: 'love, laughter, lots of hugs',
-        cast: 'Gundu, Teddy, and every moment in between',
-        genres: 'Romance, Adventure, Heartwarming',
-        tags: 'Romantic, Beautiful, Unforgettable',
-        sections: [
-            {
-                title: 'First 3 Months',
-                id: '3',
-                items: [
-                    { id: 1, src: 'imagesUs/memories1.jpeg', title: 'At the Coffee Shop' },
-                    { id: 2, src: 'imagesUs/memories2.jpeg', title: 'Getting to Know You' },
-                    { id: 3, src: 'imagesUs/memories3.jpeg', title: 'Beautiful Smile' },
-                    { id: 4, src: 'imagesUs/memories4.jpeg', title: 'First Photo Together' },
-                    { id: 5, src: 'imagesUs/memories1.jpeg', title: 'Sunset Walk' },
-                    { id: 6, src: 'imagesUs/memories2.jpeg', title: 'Dinner Together' },
-                    { id: 7, src: 'imagesUs/memories3.jpeg', title: 'Candid Shot' },
-                    { id: 8, src: 'imagesUs/memories4.jpeg', title: 'Dancing' },
-                ]
-            },
-            {
-                title: 'First 6 Months',
-                id: '6',
-                items: [
-                    { id: 1, src: 'imagesUs/memories1.jpeg', title: 'Beach Day' },
-                    { id: 2, src: 'imagesUs/memories2.jpeg', title: 'Sunset' },
-                    { id: 3, src: 'imagesUs/memories3.jpeg', title: 'Beach Walk' },
-                    { id: 4, src: 'imagesUs/memories4.jpeg', title: 'Restaurant Night' },
-                    { id: 5, src: 'imagesUs/memories1.jpeg', title: 'Cozy Dinner' },
-                    { id: 6, src: 'imagesUs/memories2.jpeg', title: 'Anniversary' },
-                    { id: 7, src: 'imagesUs/memories3.jpeg', title: 'Party Night' },
-                    { id: 8, src: 'imagesUs/memories4.jpeg', title: 'Home Date' },
-                ]
-            },
-            {
-                title: 'First 9 Months',
-                id: '9',
-                items: [
-                    { id: 1, src: 'imagesUs/memories1.jpeg', title: 'Peak View' },
-                    { id: 2, src: 'imagesUs/memories2.jpeg', title: 'Hiking Together' },
-                    { id: 3, src: 'imagesUs/memories3.jpeg', title: 'Breathtaking' },
-                    { id: 4, src: 'imagesUs/memories4.jpeg', title: 'City Lights' },
-                    { id: 5, src: 'imagesUs/memories2.jpeg', title: 'Street Photography' },
-                    { id: 6, src: 'imagesUs/memories3.jpeg', title: 'Festival Fun' },
-                    { id: 7, src: 'imagesUs/memories1.jpeg', title: 'Celebration' },
-                    { id: 8, src: 'imagesUs/memories2.jpeg', title: 'Morning Coffee' },
-                ]
-            },
-            {
-                title: 'First Year',
-                id: '12',
-                items: [
-                    { id: 1, src: 'imagesUs/memories1.jpeg', title: 'First Year' },
-                    { id: 2, src: 'imagesUs/memories2.jpeg', title: 'Anniversary' },
-                    { id: 3, src: 'imagesUs/memories3.jpeg', title: 'Special Day' },
-                    { id: 4, src: 'imagesUs/memories4.jpeg', title: 'Foreign Land' },
-                    { id: 5, src: 'imagesUs/memories1.jpeg', title: 'Adventure' },
-                    { id: 6, src: 'imagesUs/memories2.jpeg', title: 'Exploration' },
-                    { id: 7, src: 'imagesUs/memories3.jpeg', title: 'Formal Portrait' },
-                    { id: 8, src: 'imagesUs/memories4.jpeg', title: 'Candid Shot' },
-                ]
-            }
-        ],
-        eventSections: [
-            {
-                title: 'OIA',
-                id: 'oia',
-                items: [
-                    { id: 1, src: 'imagesUs/memories1.jpeg', title: 'OIA Memory 1' },
-                    { id: 2, src: 'imagesUs/memories2.jpeg', title: 'OIA Memory 2' },
-                    { id: 3, src: 'imagesUs/memories3.jpeg', title: 'OIA Memory 3' },
-                    { id: 4, src: 'imagesUs/memories4.jpeg', title: 'OIA Memory 4' },
-                ]
-            },
-            {
-                title: 'Cute Date',
-                id: 'cute_date',
-                items: [
-                    { id: 1, src: 'imagesUs/memories1.jpeg', title: 'Cute Date 1' },
-                    { id: 2, src: 'imagesUs/memories2.jpeg', title: 'Cute Date 2' },
-                    { id: 3, src: 'imagesUs/memories3.jpeg', title: 'Cute Date 3' },
-                    { id: 4, src: 'imagesUs/memories4.jpeg', title: 'Cute Date 4' },
-                ]
-            },
-            {
-                title: 'Sensitive',
-                id: 'sensitive',
-                items: [
-                    { id: 1, src: 'imagesUs/memories1.jpeg', title: 'Sensitive 1' },
-                    { id: 2, src: 'imagesUs/memories2.jpeg', title: 'Sensitive 2' },
-                    { id: 3, src: 'imagesUs/memories3.jpeg', title: 'Sensitive 3' },
-                    { id: 4, src: 'imagesUs/memories4.jpeg', title: 'Sensitive 4' },
-                ]
-            },
-            {
-                title: 'Birthday',
-                id: 'birthday',
-                items: [
-                    { id: 1, src: 'imagesUs/memories1.jpeg', title: 'Birthday 1' },
-                    { id: 2, src: 'imagesUs/memories2.jpeg', title: 'Birthday 2' },
-                    { id: 3, src: 'imagesUs/memories3.jpeg', title: 'Birthday 3' },
-                    { id: 4, src: 'imagesUs/memories4.jpeg', title: 'Birthday 4' },
-                ]
-            }
+        video: 'https://res.cloudinary.com/dwmcugijh/video/upload/v1781456871/videosUs/pei83pnj7u5ivwqe70hk.mp4',
+        sections: [            { title: 'anniversary', id: 'anniversary', items: [
+                { id: 1, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455643/imageUs/anniversary/ann1.jpg', title: 'ann1.jpg' },
+                { id: 2, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455643/imageUs/anniversary/ann10.jpg', title: 'ann10.jpg' },
+                { id: 3, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455644/imageUs/anniversary/ann11.jpg', title: 'ann11.jpg' },
+                { id: 4, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455645/imageUs/anniversary/ann12.png', title: 'ann12.png' },
+                { id: 5, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455646/imageUs/anniversary/ann13.jpg', title: 'ann13.jpg' },
+                { id: 6, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455647/imageUs/anniversary/ann15.jpg', title: 'ann15.jpg' },
+                { id: 7, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455648/imageUs/anniversary/ann16.jpg', title: 'ann16.jpg' },
+                { id: 8, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455648/imageUs/anniversary/ann17.jpg', title: 'ann17.jpg' },
+                { id: 9, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455650/imageUs/anniversary/ann18.jpg', title: 'ann18.jpg' },
+                { id: 10, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455651/imageUs/anniversary/ann19.jpg', title: 'ann19.jpg' },
+                { id: 11, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455652/imageUs/anniversary/ann2.jpg', title: 'ann2.jpg' },
+                { id: 12, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455653/imageUs/anniversary/ann20.jpg', title: 'ann20.jpg' },
+                { id: 13, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455654/imageUs/anniversary/ann21.jpg', title: 'ann21.jpg' },
+                { id: 14, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455654/imageUs/anniversary/ann3.jpg', title: 'ann3.jpg' },
+                { id: 15, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455655/imageUs/anniversary/ann4.jpg', title: 'ann4.jpg' },
+                { id: 16, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455656/imageUs/anniversary/ann5.jpg', title: 'ann5.jpg' },
+                { id: 17, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455656/imageUs/anniversary/ann6.jpg', title: 'ann6.jpg' },
+                { id: 18, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455657/imageUs/anniversary/ann7.jpg', title: 'ann7.jpg' },
+                { id: 19, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455658/imageUs/anniversary/ann8.jpg', title: 'ann8.jpg' },
+                { id: 20, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455658/imageUs/anniversary/ann9.jpg', title: 'ann9.jpg' },
+            ] },
+            { title: 'Date night 2', id: 'date night 2', items: [
+                { id: 1, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455659/imageUs/Date%20night%202/dn1.jpg', title: 'dn1.jpg' },
+                { id: 2, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455660/imageUs/Date%20night%202/dn2.jpg', title: 'dn2.jpg' },
+                { id: 3, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455661/imageUs/Date%20night%202/dn3.jpg', title: 'dn3.jpg' },
+                { id: 4, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455662/imageUs/Date%20night%202/dn4.jpg', title: 'dn4.jpg' },
+                { id: 5, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455662/imageUs/Date%20night%202/dn5.jpg', title: 'dn5.jpg' },
+            ] },
+            { title: 'Gunduuuu', id: 'gunduuuu', items: [
+                { id: 1, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455663/imageUs/Gunduuuu/gundu1.jpg', title: 'gundu1.jpg' },
+                { id: 2, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455664/imageUs/Gunduuuu/gundu10.jpg', title: 'gundu10.jpg' },
+                { id: 3, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455665/imageUs/Gunduuuu/gundu11.jpg', title: 'gundu11.jpg' },
+                { id: 4, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455666/imageUs/Gunduuuu/gundu12.jpg', title: 'gundu12.jpg' },
+                { id: 5, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455667/imageUs/Gunduuuu/gundu13.jpg', title: 'gundu13.jpg' },
+                { id: 6, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455667/imageUs/Gunduuuu/gundu14.jpg', title: 'gundu14.jpg' },
+                { id: 7, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455668/imageUs/Gunduuuu/gundu15.jpg', title: 'gundu15.jpg' },
+                { id: 8, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455669/imageUs/Gunduuuu/gundu16.jpg', title: 'gundu16.jpg' },
+                { id: 9, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455670/imageUs/Gunduuuu/gundu17.jpg', title: 'gundu17.jpg' },
+                { id: 10, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455670/imageUs/Gunduuuu/gundu18.jpg', title: 'gundu18.jpeg' },
+                { id: 11, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455671/imageUs/Gunduuuu/gundu19.jpg', title: 'gundu19.jpg' },
+                { id: 12, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455673/imageUs/Gunduuuu/gundu2.jpg', title: 'gundu2.jpg' },
+                { id: 13, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455674/imageUs/Gunduuuu/gundu20.jpg', title: 'gundu20.jpg' },
+                { id: 14, src: 'https://res.cloudinary.com/dwmcugijh/video/upload/v1781455679/imageUs/Gunduuuu/gundu21.mp4', title: 'gundu21.mp4' },
+                { id: 15, src: 'https://res.cloudinary.com/dwmcugijh/video/upload/v1781455682/imageUs/Gunduuuu/gundu22.mp4', title: 'gundu22.mp4' },
+                { id: 16, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455684/imageUs/Gunduuuu/gundu3.jpg', title: 'gundu3.jpg' },
+                { id: 17, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455685/imageUs/Gunduuuu/gundu4.jpg', title: 'gundu4.jpg' },
+                { id: 18, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455686/imageUs/Gunduuuu/gundu5.jpg', title: 'gundu5.jpg' },
+                { id: 19, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455687/imageUs/Gunduuuu/gundu6.jpg', title: 'gundu6.jpg' },
+                { id: 20, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455689/imageUs/Gunduuuu/gundu7.jpg', title: 'gundu7.jpg' },
+                { id: 21, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455690/imageUs/Gunduuuu/gundu8.jpg', title: 'gundu8.jpg' },
+                { id: 22, src: 'https://res.cloudinary.com/dwmcugijh/video/upload/v1781455694/imageUs/Gunduuuu/us25.mp4', title: 'us25.mp4' },
+            ] },
+            { title: 'Oia Date', id: 'oia date', items: [
+                { id: 1, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455696/imageUs/Oia%20Date/oia%201.jpg', title: 'oia 1.jpg' },
+                { id: 2, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455697/imageUs/Oia%20Date/oia2.jpg', title: 'oia2.jpg' },
+                { id: 3, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455699/imageUs/Oia%20Date/oia3.jpg', title: 'oia3.jpg' },
+                { id: 4, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455699/imageUs/Oia%20Date/oia4.jpg', title: 'oia4.jpg' },
+                { id: 5, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455700/imageUs/Oia%20Date/oia5.jpg', title: 'oia5.jpg' },
+                { id: 6, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455702/imageUs/Oia%20Date/oia6.jpg', title: 'oia6.jpg' },
+            ] },
+            { title: 'pranav bday', id: 'pranav bday', items: [
+                { id: 1, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455702/imageUs/pranav%20bday/bday1.jpg', title: 'bday1.jpg' },
+                { id: 2, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455704/imageUs/pranav%20bday/bday10.jpg', title: 'bday10.jpg' },
+                { id: 3, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455704/imageUs/pranav%20bday/bday2.jpg', title: 'bday2.jpg' },
+                { id: 4, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455705/imageUs/pranav%20bday/bday3.jpg', title: 'bday3.jpg' },
+                { id: 5, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455706/imageUs/pranav%20bday/bday4.jpg', title: 'bday4.jpg' },
+                { id: 6, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455706/imageUs/pranav%20bday/bday5.jpg', title: 'bday5.jpg' },
+                { id: 7, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455707/imageUs/pranav%20bday/bday6.jpg', title: 'bday6.jpg' },
+                { id: 8, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455708/imageUs/pranav%20bday/bday7.jpg', title: 'bday7.jpg' },
+                { id: 9, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455709/imageUs/pranav%20bday/bday8.jpg', title: 'bday8.jpg' },
+            ] },
+            { title: 'Queen', id: 'queen', items: [
+                { id: 1, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455741/imageUs/Queen/solo.jpg', title: 'solo.jpg' },
+                { id: 2, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455742/imageUs/Queen/solo1.webp', title: 'solo1.webp' },
+                { id: 3, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455743/imageUs/Queen/solo10.jpg', title: 'solo10.jpg' },
+                { id: 4, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455744/imageUs/Queen/solo11.jpg', title: 'solo11.jpg' },
+                { id: 5, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455745/imageUs/Queen/solo12.jpg', title: 'solo12.jpg' },
+                { id: 6, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455749/imageUs/Queen/solo14.jpg', title: 'solo14.jpg' },
+                { id: 7, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455750/imageUs/Queen/solo16.jpg', title: 'solo16.jpg' },
+                { id: 8, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455751/imageUs/Queen/solo17.jpg', title: 'solo17.jpg' },
+                { id: 9, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455753/imageUs/Queen/solo18.jpg', title: 'solo18.jpg' },
+                { id: 10, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455754/imageUs/Queen/solo19.jpg', title: 'solo19.jpg' },
+                { id: 11, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455755/imageUs/Queen/solo2.jpg', title: 'solo2.jpg' },
+                { id: 12, src: 'https://res.cloudinary.com/dwmcugijh/video/upload/v1781455756/imageUs/Queen/solo20.mp4', title: 'solo20.mp4' },
+                { id: 13, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455758/imageUs/Queen/solo21.jpg', title: 'solo21.jpg' },
+                { id: 14, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455758/imageUs/Queen/solo21.jpg', title: 'solo21.mp4' },
+                { id: 15, src: 'https://res.cloudinary.com/dwmcugijh/video/upload/v1781455766/imageUs/Queen/solo27.mp4', title: 'solo27.mp4' },
+                { id: 16, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455767/imageUs/Queen/solo28.jpg', title: 'solo28.jpg' },
+                { id: 17, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455768/imageUs/Queen/solo29.jpg', title: 'solo29.jpg' },
+                { id: 18, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455770/imageUs/Queen/solo3.jpg', title: 'solo3.jpg' },
+                { id: 19, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455771/imageUs/Queen/solo30.jpg', title: 'solo30.jpg' },
+                { id: 20, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455772/imageUs/Queen/solo31.jpg', title: 'solo31.jpg' },
+                { id: 21, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455773/imageUs/Queen/solo32.jpg', title: 'solo32.jpg' },
+                { id: 22, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455774/imageUs/Queen/solo33.jpg', title: 'solo33.jpg' },
+                { id: 23, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455776/imageUs/Queen/solo6.jpg', title: 'solo6.jpg' },
+                { id: 24, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455777/imageUs/Queen/solo7.jpg', title: 'solo7.jpg' },
+                { id: 25, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455778/imageUs/Queen/solo8.jpg', title: 'solo8.jpg' },
+                { id: 26, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455779/imageUs/Queen/solo9.jpg', title: 'solo9.jpg' },
+            ] },
+            { title: 'Sensitive', id: 'sensitive', items: [
+                { id: 1, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455780/imageUs/Sensitive/sens1.jpg', title: 'sens1.jpg' },
+                { id: 2, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455781/imageUs/Sensitive/sens10.jpg', title: 'sens10.jpg' },
+                { id: 3, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455782/imageUs/Sensitive/sens12.jpg', title: 'sens12.jpg' },
+                { id: 4, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455785/imageUs/Sensitive/sens13.jpg', title: 'sens13.jpg' },
+                { id: 5, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455788/imageUs/Sensitive/sens14.jpg', title: 'sens14.jpg' },
+                { id: 6, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455789/imageUs/Sensitive/sens2.jpg', title: 'sens2.jpg' },
+                { id: 7, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455790/imageUs/Sensitive/sens3.jpg', title: 'sens3.jpg' },
+                { id: 8, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455790/imageUs/Sensitive/sens4.jpg', title: 'sens4.jpg' },
+                { id: 9, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455791/imageUs/Sensitive/sens5.jpg', title: 'sens5.jpg' },
+                { id: 10, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455792/imageUs/Sensitive/sens6.jpg', title: 'sens6.jpg' },
+                { id: 11, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455792/imageUs/Sensitive/sens7.jpg', title: 'sens7.jpg' },
+                { id: 12, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455793/imageUs/Sensitive/sens8.jpg', title: 'sens8.jpg' },
+                { id: 13, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455794/imageUs/Sensitive/sens9.jpg', title: 'sens9.jpg' },
+            ] },
+            { title: 'Udupi', id: 'udupi', items: [
+                { id: 1, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455795/imageUs/Udupi/udp1.jpg', title: 'udp1.jpg' },
+                { id: 2, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455795/imageUs/Udupi/udp2.jpg', title: 'udp2.jpg' },
+                { id: 3, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455797/imageUs/Udupi/udp3.jpg', title: 'udp3.jpg' },
+                { id: 4, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455797/imageUs/Udupi/udp4.jpg', title: 'udp4.jpg' },
+                { id: 5, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455798/imageUs/Udupi/udp6.jpg', title: 'udp6.jpg' },
+                { id: 6, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455799/imageUs/Udupi/udp7.jpg', title: 'udp7.jpg' },
+                { id: 7, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455800/imageUs/Udupi/udp8.jpg', title: 'udp8.jpg' },
+                { id: 8, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455801/imageUs/Udupi/udp9.jpg', title: 'udp9.jpg' },
+            ] },
+            { title: 'Us', id: 'us', items: [
+                { id: 1, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455802/imageUs/Us/onam1.jpg', title: 'onam1.jpg' },
+                { id: 2, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455803/imageUs/Us/onam2.jpg', title: 'onam2.jpg' },
+                { id: 3, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455804/imageUs/Us/onam3.jpg', title: 'onam3.jpg' },
+                { id: 4, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455805/imageUs/Us/us%2016.jpg', title: 'us 16.jpg' },
+                { id: 5, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455806/imageUs/Us/us1.jpg', title: 'us1.jpg' },
+                { id: 6, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455807/imageUs/Us/us10.jpg', title: 'us10.jpg' },
+                { id: 7, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455807/imageUs/Us/us11.jpg', title: 'us11.jpg' },
+                { id: 8, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455808/imageUs/Us/us12.jpg', title: 'us12.jpg' },
+                { id: 9, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455809/imageUs/Us/us13.jpg', title: 'us13.jpg' },
+                { id: 10, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455811/imageUs/Us/us15.jpg', title: 'us15.jpg' },
+                { id: 11, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455811/imageUs/Us/us15.jpg', title: 'us15.mp4' },
+                { id: 12, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455812/imageUs/Us/us17.jpg', title: 'us17.jpg' },
+                { id: 13, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455813/imageUs/Us/us18.jpg', title: 'us18.jpg' },
+                { id: 14, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455814/imageUs/Us/us19.jpg', title: 'us19.jpg' },
+                { id: 15, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455815/imageUs/Us/us2.jpg', title: 'us2.jpg' },
+                { id: 16, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455815/imageUs/Us/us20.jpg', title: 'us20.jpg' },
+                { id: 17, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455817/imageUs/Us/us21.jpg', title: 'us21.jpg' },
+                { id: 18, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455819/imageUs/Us/us22.jpg', title: 'us22.jpg' },
+                { id: 19, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455820/imageUs/Us/us3.jpg', title: 'us3.jpg' },
+                { id: 20, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455820/imageUs/Us/us4.jpg', title: 'us4.jpg' },
+                { id: 21, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455821/imageUs/Us/us5.jpg', title: 'us5.jpg' },
+                { id: 22, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455822/imageUs/Us/us6.jpg', title: 'us6.jpg' },
+                { id: 23, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455823/imageUs/Us/us8.jpg', title: 'us8.jpg' },
+                { id: 24, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455824/imageUs/Us/us9.jpg', title: 'us9.jpg' },
+            ] },
+            { title: 'Valentines Day', id: 'valentines day', items: [
+                { id: 1, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455825/imageUs/Valentines%20Day/val1.jpg', title: 'val1.jpg' },
+                { id: 2, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455825/imageUs/Valentines%20Day/val2.jpg', title: 'val2.jpg' },
+                { id: 3, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455826/imageUs/Valentines%20Day/val3.jpg', title: 'val3.jpg' },
+                { id: 4, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455827/imageUs/Valentines%20Day/val4.jpg', title: 'val4.jpg' },
+                { id: 5, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455827/imageUs/Valentines%20Day/val5.jpg', title: 'val5.jpg' },
+            ] },
+            { title: 'Wonderla', id: 'wonderla', items: [
+                { id: 1, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455828/imageUs/Wonderla/wonderla1.jpg', title: 'wonderla1.jpg' },
+                { id: 2, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455829/imageUs/Wonderla/wonderla10.jpg', title: 'wonderla10.jpg' },
+                { id: 3, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455829/imageUs/Wonderla/wonderla11.jpg', title: 'wonderla11.jpg' },
+                { id: 4, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455830/imageUs/Wonderla/wonderla12.jpg', title: 'wonderla12.jpg' },
+                { id: 5, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455832/imageUs/Wonderla/wonderla13.jpg', title: 'wonderla13.jpg' },
+                { id: 6, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455833/imageUs/Wonderla/wonderla14.jpg', title: 'wonderla14.jpg' },
+                { id: 7, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455834/imageUs/Wonderla/wonderla2.jpg', title: 'wonderla2.jpg' },
+                { id: 8, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455835/imageUs/Wonderla/wonderla3.jpg', title: 'wonderla3.jpg' },
+                { id: 9, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455835/imageUs/Wonderla/wonderla4.jpg', title: 'wonderla4.jpg' },
+                { id: 10, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455836/imageUs/Wonderla/wonderla5.jpg', title: 'wonderla5.jpg' },
+                { id: 11, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455837/imageUs/Wonderla/wonderla6.jpg', title: 'wonderla6.jpg' },
+                { id: 12, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455838/imageUs/Wonderla/wonderla7.jpg', title: 'wonderla7.jpg' },
+                { id: 13, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455839/imageUs/Wonderla/wonderla8.jpg', title: 'wonderla8.jpg' },
+                { id: 14, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455839/imageUs/Wonderla/wonderla9.jpg', title: 'wonderla9.jpg' },
+            ] },
         ]
     },
     me: {
         name: 'Me',
-        emoji: '👤',
         video: 'videosMe/memories.mp4',
-        videoPoster: 'videosMe/poster.png',
-        videoTitle: '',
-        description: 'A personal collection of cherished memories, adventures, and the moments that define who I am.',
-        rating: 'U/A 18+',
-        rank: '#1 in My World',
-        year: '2005',
-        duration: 'A Lifetime',
-        warnings: 'joy, adventure, good vibes',
-        cast: 'Me, myself, and the ones I love',
-        genres: 'Biography, Adventure, Feel-Good',
-        tags: 'Inspiring, Joyful, Personal',
-        sections: [
-            {
-                title: 'Me',
-                id: 'me',
-                items: [
-                    { id: 1, src: 'imagesMe/memories1.jpeg', title: 'Solo Shot 1' },
-                    { id: 2, src: 'imagesMe/memories2.jpeg', title: 'Solo Shot 2' },
-                    { id: 3, src: 'imagesMe/memories3.jpeg', title: 'Solo Shot 3' },
-                    { id: 4, src: 'imagesMe/memories4.jpeg', title: 'Solo Shot 4' },
-                ]
-            },
-            {
-                title: 'Familia',
-                id: 'familia',
-                items: [
-                    { id: 1, src: 'imagesMe/memories1.jpeg', title: 'Family 1' },
-                    { id: 2, src: 'imagesMe/memories2.jpeg', title: 'Family 2' },
-                    { id: 3, src: 'imagesMe/memories3.jpeg', title: 'Family 3' },
-                    { id: 4, src: 'imagesMe/memories4.jpeg', title: 'Family 4' },
-                ]
-            },
-            {
-                title: 'Teddy',
-                id: 'teddy',
-                items: [
-                    { id: 1, src: '', title: 'Gundu and Teddy', isRedirect: true, redirectProfile: 'us', redirectSection: 'teddy' }
-                ]
-            }
+        sections: [            { title: 'Baby', id: 'baby', items: [
+                { id: 1, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455591/imageMe/Baby/baby1.jpg', title: 'baby1.JPG' },
+                { id: 2, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455598/imageMe/Baby/baby2.jpg', title: 'baby2.JPG' },
+                { id: 3, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455599/imageMe/Baby/baby3.jpg', title: 'baby3.JPG' },
+                { id: 4, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455600/imageMe/Baby/baby4.jpg', title: 'baby4.JPG' },
+                { id: 5, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455601/imageMe/Baby/baby5.jpg', title: 'baby5.JPG' },
+                { id: 6, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455601/imageMe/Baby/baby6.jpg', title: 'baby6.JPG' },
+                { id: 7, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455603/imageMe/Baby/baby7.jpg', title: 'baby7.jpg' },
+                { id: 8, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455603/imageMe/Baby/baby8.jpg', title: 'baby8.jpg' },
+                { id: 9, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455604/imageMe/Baby/baby9.jpg', title: 'baby9.jpg' },
+            ] },
+            { title: 'Dance', id: 'dance', items: [
+                { id: 1, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455605/imageMe/Dance/dance1.jpg', title: 'dance1.JPG' },
+                { id: 2, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455606/imageMe/Dance/dance2.jpg', title: 'dance2.JPG' },
+                { id: 3, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455607/imageMe/Dance/dance4.jpg', title: 'dance4.JPG' },
+            ] },
+            { title: 'Family', id: 'family', items: [
+                { id: 1, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455607/imageMe/Family/dad1.jpg', title: 'dad1.JPG' },
+                { id: 2, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455608/imageMe/Family/dad2.jpg', title: 'dad2.JPG' },
+                { id: 3, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455609/imageMe/Family/dad3.jpg', title: 'dad3.JPG' },
+                { id: 4, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455610/imageMe/Family/fam10.jpg', title: 'fam10.JPG' },
+                { id: 5, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455611/imageMe/Family/fam11.jpg', title: 'fam11.JPG' },
+                { id: 6, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455612/imageMe/Family/fam12.jpg', title: 'fam12.jpg' },
+                { id: 7, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455613/imageMe/Family/fam14.jpg', title: 'fam14.JPG' },
+                { id: 8, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455614/imageMe/Family/fam16.jpg', title: 'fam16.JPG' },
+                { id: 9, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455615/imageMe/Family/fam17.jpg', title: 'fam17.JPG' },
+                { id: 10, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455616/imageMe/Family/fam18.jpg', title: 'fam18.JPG' },
+                { id: 11, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455616/imageMe/Family/fam19.jpg', title: 'fam19.JPG' },
+                { id: 12, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455617/imageMe/Family/fam2.jpg', title: 'fam2.JPG' },
+                { id: 13, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455618/imageMe/Family/fam3.jpg', title: 'fam3.JPG' },
+                { id: 14, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455619/imageMe/Family/fam4.jpg', title: 'fam4.JPG' },
+                { id: 15, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455620/imageMe/Family/fam5.jpg', title: 'fam5.JPG' },
+                { id: 16, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455621/imageMe/Family/fam6.jpg', title: 'fam6.JPG' },
+                { id: 17, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455621/imageMe/Family/fam7.jpg', title: 'fam7.JPG' },
+                { id: 18, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455622/imageMe/Family/fam8.jpg', title: 'fam8.jpg' },
+                { id: 19, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455623/imageMe/Family/fam9.jpg', title: 'fam9.JPG' },
+            ] },
+            { title: 'Me', id: 'me', items: [
+                { id: 1, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455624/imageMe/Me/IMG_0311.jpg', title: 'IMG_0311.JPG' },
+                { id: 2, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455625/imageMe/Me/IMG_1791.jpg', title: 'IMG_1791.JPG' },
+                { id: 3, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455626/imageMe/Me/IMG_1891.jpg', title: 'IMG_1891.JPG' },
+                { id: 4, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455627/imageMe/Me/IMG_3913.jpg', title: 'IMG_3913.JPG' },
+                { id: 5, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455628/imageMe/Me/me1.jpg', title: 'me1.JPG' },
+                { id: 6, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455628/imageMe/Me/me10.jpg', title: 'me10.JPG' },
+                { id: 7, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455629/imageMe/Me/me11.jpg', title: 'me11.JPG' },
+                { id: 8, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455630/imageMe/Me/me12.jpg', title: 'me12.JPG' },
+                { id: 9, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455631/imageMe/Me/me13.jpg', title: 'me13.JPG' },
+                { id: 10, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455632/imageMe/Me/me14.jpg', title: 'me14.JPG' },
+                { id: 11, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455632/imageMe/Me/me15.jpg', title: 'me15.JPG' },
+                { id: 12, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455634/imageMe/Me/me16.jpg', title: 'me16.jpg' },
+                { id: 13, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455634/imageMe/Me/me17.jpg', title: 'me17.JPG' },
+                { id: 14, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455635/imageMe/Me/me18.jpg', title: 'me18.jpg' },
+                { id: 15, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455636/imageMe/Me/me19.jpg', title: 'me19.jpg' },
+                { id: 16, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455637/imageMe/Me/me20.jpg', title: 'me20.JPG' },
+                { id: 17, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455637/imageMe/Me/me21.jpg', title: 'me21.jpg' },
+                { id: 18, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455638/imageMe/Me/me22.jpg', title: 'me22.JPG' },
+                { id: 19, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455639/imageMe/Me/me23.jpg', title: 'me23.JPG' },
+                { id: 20, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455639/imageMe/Me/me25.jpg', title: 'me25.jpg' },
+                { id: 21, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455640/imageMe/Me/me3.jpg', title: 'me3.JPG' },
+                { id: 22, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455641/imageMe/Me/me5.jpg', title: 'me5.JPG' },
+                { id: 23, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455642/imageMe/Me/me9.jpg', title: 'me9.JPG' },
+            ] },
         ]
     }
 };
@@ -256,10 +341,10 @@ function clearSession() {
 function restoreSession() {
     try {
         const session = loadSession();
-        console.log('📦 Loaded session data:', session);
+        console.log('ðŸ“¦ Loaded session data:', session);
         
         if (session && session.isAuthenticated && session.profile) {
-            console.log('🔄 Attempting to restore session...');
+            console.log('ðŸ”„ Attempting to restore session...');
             
             // Skip the loading and auth screens, go straight to profile
             loadingScreen.classList.add('hidden');
@@ -272,18 +357,18 @@ function restoreSession() {
             currentView = session.view || 'events';
             
             // Load the profile content
-            console.log('📂 Loading profile:', session.profile);
+            console.log('ðŸ“‚ Loading profile:', session.profile);
             loadProfile(session.profile);
             updateProfileSelectorImage(session.profile);
             setupNavbarScroll();
             
-            console.log('✅ Session restored successfully! Profile =', session.profile, 'View =', session.view);
+            console.log('âœ… Session restored successfully! Profile =', session.profile, 'View =', session.view);
             return true;
         }
-        console.log('⚠️ No valid session found. Showing login screen.');
+        console.log('âš ï¸ No valid session found. Showing login screen.');
         return false;
     } catch (error) {
-        console.error('❌ Error restoring session:', error);
+        console.error('âŒ Error restoring session:', error);
         return false;
     }
 }
@@ -323,12 +408,12 @@ viewToggleBtns.forEach(btn => {
     });
 });
 
-// Hero Play button — open fullscreen modal
+// Hero Play button â€” open fullscreen modal
 heroPlayBtn.addEventListener('click', () => {
     openFullscreenVideo();
 });
 
-// Hero Info button — open More Info modal
+// Hero Info button â€” open More Info modal
 heroInfoBtn.addEventListener('click', () => {
     openMoreInfoModal();
 });
@@ -634,9 +719,9 @@ function renderSection(section, sectionIndex) {
     contentRow.innerHTML = `
         <div class="row-title">${section.title}</div>
         <div class="scroll-nav-container">
-            <button class="nav-arrow nav-arrow-left hidden" data-section-id="${section.id}">❮</button>
+            <button class="nav-arrow nav-arrow-left hidden" data-section-id="${section.id}">â®</button>
             <div class="scroll-container" data-section-id="${section.id}"></div>
-            <button class="nav-arrow nav-arrow-right hidden" data-section-id="${section.id}">❯</button>
+            <button class="nav-arrow nav-arrow-right hidden" data-section-id="${section.id}">â¯</button>
         </div>
     `;
 
@@ -680,7 +765,7 @@ function renderSection(section, sectionIndex) {
             galleryItem.innerHTML = `
                 <div class="gallery-image-wrapper">
                     <img src="${item.src}" alt="${item.title}">
-                    ${isLastItem && hasMoreItems ? '<div class="arrow-overlay">→</div>' : ''}
+                    ${isLastItem && hasMoreItems ? '<div class="arrow-overlay">â†’</div>' : ''}
                 </div>
                 <div class="gallery-item-title">${item.title}</div>
             `;
@@ -754,7 +839,7 @@ function loadMoreItems(sectionId) {
         galleryItem.innerHTML = `
             <div class="gallery-image-wrapper">
                 <img src="${item.src}" alt="${item.title}">
-                ${isLastItem && hasMoreItems ? '<div class="arrow-overlay">→</div>' : ''}
+                ${isLastItem && hasMoreItems ? '<div class="arrow-overlay">â†’</div>' : ''}
             </div>
             <div class="gallery-item-title">${item.title}</div>
         `;
@@ -878,7 +963,7 @@ function renderPaginationBatch(sectionId) {
             galleryItem.innerHTML = `
                 <div class="gallery-image-wrapper">
                     <img src="${item.src}" alt="${item.title}">
-                    ${isLastItem && hasMoreItems ? '<div class="arrow-overlay">→</div>' : ''}
+                    ${isLastItem && hasMoreItems ? '<div class="arrow-overlay">â†’</div>' : ''}
                 </div>
                 <div class="gallery-item-title">${item.title}</div>
             `;
@@ -1031,19 +1116,19 @@ function backToProfiles() {
 // ============================================
 window.addEventListener('load', () => {
     try {
-        console.log('🎬 Premium Netflix-style Gallery loaded successfully!');
-        console.log('💾 Checking for saved session in localStorage...');
+        console.log('ðŸŽ¬ Premium Netflix-style Gallery loaded successfully!');
+        console.log('ðŸ’¾ Checking for saved session in localStorage...');
         
         // Try to restore session from localStorage
         const sessionRestored = restoreSession();
         
         if (!sessionRestored) {
             // No valid session, show loading screen
-            console.log('👤 No session found - showing login screen');
+            console.log('ðŸ‘¤ No session found - showing login screen');
             loadingScreen.classList.remove('hidden');
         }
     } catch (error) {
-        console.error('❌ Error during initialization:', error);
+        console.error('âŒ Error during initialization:', error);
         loadingScreen.classList.remove('hidden');
     }
 });
@@ -1181,7 +1266,7 @@ document.addEventListener('keydown', (e) => {
 
 
 // ============================================
-// ✦ FUTURISTIC ENHANCEMENTS
+// âœ¦ FUTURISTIC ENHANCEMENTS
 // ============================================
 
 // --- Cursor Spotlight ---
@@ -1197,7 +1282,7 @@ document.addEventListener('mousemove', (e) => {
     }
 });
 
-// --- Vanilla Tilt — 3D card effect ---
+// --- Vanilla Tilt â€” 3D card effect ---
 function initTiltOnElement(el) {
     if (typeof VanillaTilt === 'undefined' || !el || el._tiltInitialized) return;
     VanillaTilt.init(el, {
@@ -1254,7 +1339,7 @@ function initGSAPScrollReveal() {
         rows.forEach((row, index) => {
             const alreadyVisible = visibilityMap[index];
             if (alreadyVisible) {
-                // Already in view on load — animate in immediately
+                // Already in view on load â€” animate in immediately
                 gsap.fromTo(row, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' });
             } else {
                 gsap.fromTo(
