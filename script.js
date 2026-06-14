@@ -299,13 +299,11 @@ const authError = document.getElementById('authError');
 // STATE MANAGEMENT
 // ============================================
 let currentProfile = null;
-let currentView = 'events';  // 'date' or 'events' - DEFAULT SET TO EVENTS
+let currentView = 'date';
 let currentVideoSrc = '';    // Tracks the video src for the current profile
 let allItemsFlat = [];  // Flat array of all items for viewer navigation
 let currentViewerIndex = -1;
 let currentViewerSectionId = null;
-const itemsPerPage = 4;  // Items to show before "More+" button
-const sectionPaginationState = {};  // Track pagination for each section
 
 // ============================================
 // SESSION MANAGEMENT (localStorage)
@@ -700,19 +698,14 @@ function renderSections(profile) {
     // Clear content area
     contentArea.innerHTML = '';
     
-    // Initialize pagination state
-    sectionsToRender.forEach(section => {
-        sectionPaginationState[section.id] = 0;  // Start at page 0
-    });
-
-    // Render sections with pagination
+    // Render sections
     sectionsToRender.forEach((section, sectionIndex) => {
         renderSection(section, sectionIndex);
     });
 }
 
 /**
- * Render a single section with pagination
+ * Render a single section with Netflix-style horizontal scroll
  */
 function renderSection(section, sectionIndex) {
     const contentRow = document.createElement('div');
@@ -720,79 +713,58 @@ function renderSection(section, sectionIndex) {
     contentRow.setAttribute('data-section-id', section.id);
     contentRow.innerHTML = `
         <div class="row-title">${section.title}</div>
-        <div class="scroll-nav-container">
-            <button class="nav-arrow nav-arrow-left hidden" data-section-id="${section.id}">â®</button>
+        <div class="row-scroll-wrapper">
+            <button class="row-arrow row-arrow-left hidden" aria-label="Scroll left">&#8249;</button>
             <div class="scroll-container" data-section-id="${section.id}"></div>
-            <button class="nav-arrow nav-arrow-right hidden" data-section-id="${section.id}">â¯</button>
+            <button class="row-arrow row-arrow-right hidden" aria-label="Scroll right">&#8250;</button>
         </div>
     `;
 
     const scrollContainer = contentRow.querySelector('.scroll-container');
-    const navArrowLeft = contentRow.querySelector('.nav-arrow-left');
-    const navArrowRight = contentRow.querySelector('.nav-arrow-right');
-    
-    // Render items (now all sections use items)
-    const pageIndex = sectionPaginationState[section.id] || 0;
-    const startIndex = pageIndex * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const itemsToShow = section.items.slice(startIndex, endIndex);
-    
-    itemsToShow.forEach((item, itemIndex) => {
-        const flatIndex = allItemsFlat.findIndex(i => 
+    const arrowLeft = contentRow.querySelector('.row-arrow-left');
+    const arrowRight = contentRow.querySelector('.row-arrow-right');
+
+    // Render ALL items - real horizontal scroll
+    section.items.forEach((item) => {
+        const flatIndex = allItemsFlat.findIndex(i =>
             i.id === item.id && i.sectionId === section.id && i.title === item.title
         );
 
         const galleryItem = document.createElement('div');
         galleryItem.className = 'gallery-item';
-        galleryItem.setAttribute('data-section-id', section.id);
-        
-        const isLastItem = itemIndex === itemsToShow.length - 1;
-        const hasMoreItems = endIndex < section.items.length;
-        
-        // Check if this is a redirect button item
-        if (item.isRedirect) {
-            galleryItem.innerHTML = `
-                <div class="gallery-image-wrapper" style="display: flex; align-items: center; justify-content: center; background: rgba(229, 9, 20, 0.2); border: 2px solid #e50914; cursor: pointer;">
-                    <button class="redirect-button" style="background: #e50914; color: white; border: none; padding: 20px 30px; font-size: 16px; font-weight: bold; border-radius: 4px; cursor: pointer; transition: all 0.3s ease;">
-                        Click here to go to Gundu and Teddy section
-                    </button>
-                </div>
-                <div class="gallery-item-title" style="text-align: center; margin-top: 10px;">Gundu and Teddy</div>
-            `;
-            
-            galleryItem.addEventListener('click', () => {
-                selectProfile(item.redirectProfile);
-            });
-        } else {
-            galleryItem.innerHTML = `
-                <div class="gallery-image-wrapper">
-                    <img src="${item.src}" alt="${item.title}">
-                    ${isLastItem && hasMoreItems ? '<div class="arrow-overlay">â†’</div>' : ''}
-                </div>
-                <div class="gallery-item-title">${item.title}</div>
-            `;
 
-            galleryItem.addEventListener('click', () => {
-                // If last item and has more items - load more
-                if (isLastItem && hasMoreItems) {
-                    loadMoreItems(section.id);
-                } else {
-                    // Otherwise open image viewer
-                    openImageViewer(flatIndex);
-                }
-            });
-        }
+        galleryItem.innerHTML = `
+            <div class="gallery-image-wrapper">
+                <img src="${item.src}" alt="${item.title}" loading="lazy">
+            </div>
+        `;
+
+        galleryItem.addEventListener('click', () => {
+            openImageViewer(flatIndex);
+        });
 
         scrollContainer.appendChild(galleryItem);
     });
 
-    // Setup left/right navigation arrow click handlers
-    navArrowLeft.addEventListener('click', () => {
-        scrollPaginationLeft(section.id);
+    // Show/hide arrows based on scroll position
+    function updateArrows() {
+        const atStart = scrollContainer.scrollLeft <= 2;
+        const atEnd = scrollContainer.scrollLeft >= scrollContainer.scrollWidth - scrollContainer.clientWidth - 2;
+        arrowLeft.classList.toggle('hidden', atStart);
+        arrowRight.classList.toggle('hidden', atEnd || section.items.length === 0);
+    }
+
+    setTimeout(updateArrows, 50);
+    scrollContainer.addEventListener('scroll', updateArrows, { passive: true });
+
+    const getScrollAmount = () => scrollContainer.clientWidth * 0.85;
+
+    arrowLeft.addEventListener('click', () => {
+        scrollContainer.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
     });
-    
-    navArrowRight.addEventListener('click', () => {
-        scrollPaginationRight(section.id);
+
+    arrowRight.addEventListener('click', () => {
+        scrollContainer.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
     });
 
     contentArea.appendChild(contentRow);
