@@ -1,16 +1,12 @@
-# ============================================
 # CLOUDINARY BATCH MEDIA UPLOAD SCRIPT
-# ============================================
-# This script uploads all media from local folders to Cloudinary
-# and maintains the folder structure automatically
+# Uploads media from Final/ folder to Cloudinary
 
 param(
-    [string]$CloudName = "",
-    [string]$UploadPreset = "",
+    [string]$CloudName = "dwmcugijh",
+    [string]$UploadPreset = "static_page",
     [string]$MediaPath = ""
 )
 
-# Colors for output
 $Green = "Green"
 $Red = "Red"
 $Yellow = "Yellow"
@@ -18,32 +14,42 @@ $Cyan = "Cyan"
 
 function Write-Header {
     Write-Host "============================================" -ForegroundColor $Cyan
-    Write-Host "  CLOUDINARY BATCH MEDIA UPLOAD SCRIPT" -ForegroundColor $Cyan
+    Write-Host "CLOUDINARY BATCH MEDIA UPLOAD SCRIPT" -ForegroundColor $Cyan
     Write-Host "============================================" -ForegroundColor $Cyan
 }
 
 function Read-Config {
-    Write-Host "`nEnter your Cloudinary credentials:`n"
-    
-    if ([string]::IsNullOrEmpty($CloudName)) {
-        $script:CloudName = Read-Host "Enter your Cloudinary Cloud Name"
-    }
-    
-    if ([string]::IsNullOrEmpty($UploadPreset)) {
-        $script:UploadPreset = Read-Host "Enter your Upload Preset name"
-    }
+    Write-Host "`nCloudinary Configuration:`n"
     
     if ([string]::IsNullOrEmpty($MediaPath)) {
-        $script:MediaPath = Read-Host "Enter the path to your media folder (e.g., C:\Users\pranava\StaticPage\StaticPage)"
+        $defaultPath = (Get-Location).Path
+        Write-Host "Default path: $defaultPath`n"
+        $MediaPath = Read-Host "Enter path to codebase folder (or press Enter for default)"
+        
+        if ([string]::IsNullOrEmpty($MediaPath)) {
+            $MediaPath = $defaultPath
+        }
     }
     
-    # Validate paths
-    if (-not (Test-Path $script:MediaPath)) {
-        Write-Host "ERROR: Media path does not exist: $($script:MediaPath)" -ForegroundColor $Red
+    if (-not (Test-Path $MediaPath)) {
+        Write-Host "ERROR: Media path does not exist: $MediaPath" -ForegroundColor $Red
         exit 1
     }
     
-    Write-Host "`n✓ Configuration loaded successfully" -ForegroundColor $Green
+    $finalPath = Join-Path $MediaPath "Final"
+    if (-not (Test-Path $finalPath)) {
+        Write-Host "ERROR: Final folder not found at: $finalPath" -ForegroundColor $Red
+        exit 1
+    }
+    
+    $script:MediaPath = $finalPath
+    $script:CloudName = $CloudName
+    $script:UploadPreset = $UploadPreset
+    
+    Write-Host "Configuration loaded successfully" -ForegroundColor $Green
+    Write-Host "  Cloud Name: $script:CloudName" -ForegroundColor $Cyan
+    Write-Host "  Upload Preset: $script:UploadPreset" -ForegroundColor $Cyan
+    Write-Host "  Media Path: $script:MediaPath" -ForegroundColor $Cyan
 }
 
 function Get-MediaFiles {
@@ -56,7 +62,7 @@ function Get-MediaFiles {
         $files += Get-ChildItem -Path $FolderPath -Filter $ext -Recurse -File
     }
     
-    return $files
+    return $files | Sort-Object DirectoryName, Name
 }
 
 function Upload-File {
@@ -68,30 +74,71 @@ function Upload-File {
     try {
         $fileName = (Get-Item $FilePath).Name
         $fileSize = (Get-Item $FilePath).Length / 1MB
+        $fileSizeRounded = [math]::Round($fileSize, 2)
         
-        Write-Host "  Uploading: $fileName ($([math]::Round($fileSize, 2)) MB)" -ForegroundColor $Cyan
+        Write-Host "  Uploading: $fileName ($fileSizeRounded MB)" -ForegroundColor $Cyan
         
-        # Prepare upload URL
         $uploadUrl = "https://api.cloudinary.com/v1_1/$($script:CloudName)/auto/upload"
+        $publicId = [System.IO.Path]::GetFileNameWithoutExtension($fileName)
         
-        # Upload with folder structure
-        $uploadParams = @{
-            file = $FilePath
-            upload_preset = $script:UploadPreset
-            folder = $CloudinaryFolder
-            public_id = [System.IO.Path]::GetFileNameWithoutExtension($fileName)
-        }
+        # Create boundary
+        $boundary = "----WebKitFormBoundary$([System.Guid]::NewGuid().ToString('n').Substring(0,16))"
         
-        # Use Invoke-WebRequest for upload
+        # Read file as bytes
+        $fileBytes = [System.IO.File]::ReadAllBytes($FilePath)
+        
+        # Build body parts
+        $bodyParts = @()
+        
+        # Part 1: upload_preset
+        $bodyParts += "--$boundary"
+        $bodyParts += 'Content-Disposition: form-data; name="upload_preset"'
+        $bodyParts += ""
+        $bodyParts += $script:UploadPreset
+        
+        # Part 2: folder
+        $bodyParts += "--$boundary"
+        $bodyParts += 'Content-Disposition: form-data; name="folder"'
+        $bodyParts += ""
+        $bodyParts += $CloudinaryFolder
+        
+        # Part 3: public_id
+        $bodyParts += "--$boundary"
+        $bodyParts += 'Content-Disposition: form-data; name="public_id"'
+        $bodyParts += ""
+        $bodyParts += $publicId
+        
+        # Part 4: file
+        $bodyParts += "--$boundary"
+        $bodyParts += "Content-Disposition: form-data; name=`"file`"; filename=`"$fileName`""
+        $bodyParts += "Content-Type: application/octet-stream"
+        $bodyParts += ""
+        
+        # Convert header parts to bytes
+        $headerBytes = [System.Text.Encoding]::UTF8.GetBytes(($bodyParts -join "`r`n") + "`r`n")
+        
+        # Footer
+        $footerBytes = [System.Text.Encoding]::UTF8.GetBytes("`r`n--$boundary--`r`n")
+        
+        # Combine all into final body
+        $ms = New-Object System.IO.MemoryStream
+        $ms.Write($headerBytes, 0, $headerBytes.Length)
+        $ms.Write($fileBytes, 0, $fileBytes.Length)
+        $ms.Write($footerBytes, 0, $footerBytes.Length)
+        $body = $ms.ToArray()
+        $ms.Close()
+        
+        # Upload
         $response = Invoke-WebRequest -Uri $uploadUrl `
             -Method POST `
-            -Form $uploadParams `
+            -ContentType "multipart/form-data; boundary=$boundary" `
+            -Body $body `
             -ErrorAction Stop
         
         $result = $response.Content | ConvertFrom-Json
         
         if ($result.secure_url) {
-            Write-Host "    ✓ Success" -ForegroundColor $Green
+            Write-Host "    SUCCESS" -ForegroundColor $Green
             return @{
                 FilePath = $FilePath
                 CloudinaryUrl = $result.secure_url
@@ -101,7 +148,7 @@ function Upload-File {
         }
     }
     catch {
-        Write-Host "    ✗ Failed: $($_.Exception.Message)" -ForegroundColor $Red
+        Write-Host "    FAILED: $($_.Exception.Message)" -ForegroundColor $Red
         return $null
     }
 }
@@ -114,54 +161,48 @@ function Main {
     
     $uploadedFiles = @()
     $failedFiles = @()
+    $urlMapping = @{
+        imageMe = @()
+        imageUs = @()
+        videoUs = $null
+    }
     
-    # Define media folders to process
     $mediaFolders = @(
         @{
-            LocalPath = Join-Path $script:MediaPath "imagesUs"
-            CloudinaryFolder = "imagesUs"
-            Type = "Images (Couple)"
-        },
-        @{
-            LocalPath = Join-Path $script:MediaPath "imagesMe"
-            CloudinaryFolder = "imagesMe"
+            LocalPath = Join-Path $script:MediaPath "imageMe"
+            CloudinaryFolder = "imageMe"
             Type = "Images (Personal)"
+            MappingKey = "imageMe"
         },
         @{
-            LocalPath = Join-Path $script:MediaPath "videosUs"
-            CloudinaryFolder = "videosUs"
+            LocalPath = Join-Path $script:MediaPath "imageUs"
+            CloudinaryFolder = "imageUs"
+            Type = "Images (Couple)"
+            MappingKey = "imageUs"
+        },
+        @{
+            LocalPath = Join-Path $script:MediaPath "videoUs"
+            CloudinaryFolder = "videoUs"
             Type = "Videos (Couple)"
-        },
-        @{
-            LocalPath = Join-Path $script:MediaPath "videosMe"
-            CloudinaryFolder = "videosMe"
-            Type = "Videos (Personal)"
-        },
-        @{
-            LocalPath = Join-Path $script:MediaPath "Logos"
-            CloudinaryFolder = "Logos"
-            Type = "Logos"
+            MappingKey = "videoUs"
         }
     )
     
-    # Process each media folder
     foreach ($folder in $mediaFolders) {
         if (Test-Path $folder.LocalPath) {
-            Write-Host "`n📁 Processing: $($folder.Type)" -ForegroundColor $Yellow
+            Write-Host "`n[FOLDER] $($folder.Type)" -ForegroundColor $Yellow
             Write-Host "   Local: $($folder.LocalPath)" -ForegroundColor $Cyan
             
             $files = Get-MediaFiles -FolderPath $folder.LocalPath
             
             if ($files.Count -eq 0) {
-                Write-Host "   ⚠ No media files found" -ForegroundColor $Yellow
+                Write-Host "   WARNING: No media files found" -ForegroundColor $Yellow
                 continue
             }
             
-            Write-Host "   Found $($files.Count) file(s)`n" -ForegroundColor $Cyan
+            Write-Host "   Found $($files.Count) file(s)" -ForegroundColor $Cyan
             
-            # Upload each file
             foreach ($file in $files) {
-                # Construct cloudinary folder path maintaining subfolder structure
                 $relativePath = $file.DirectoryName.Replace($folder.LocalPath, "").TrimStart("\")
                 if ($relativePath) {
                     $cloudinaryPath = "$($folder.CloudinaryFolder)/$relativePath"
@@ -173,48 +214,57 @@ function Main {
                 
                 if ($result) {
                     $uploadedFiles += $result
+                    
+                    $fileName = $file.Name
+                    $folderName = if ($relativePath) { $relativePath } else { "root" }
+                    
+                    $fileEntry = @{
+                        fileName = $fileName
+                        folder = $folderName
+                        url = $result.CloudinaryUrl
+                        localPath = $relativePath
+                    }
+                    
+                    if ($folder.MappingKey -eq "videoUs") {
+                        $urlMapping["videoUs"] = $fileEntry
+                    } else {
+                        $urlMapping[$folder.MappingKey] += @($fileEntry)
+                    }
                 } else {
                     $failedFiles += $file.FullName
                 }
             }
         }
         else {
-            Write-Host "⚠ Folder not found: $($folder.LocalPath)" -ForegroundColor $Yellow
+            Write-Host "WARNING: Folder not found: $($folder.LocalPath)" -ForegroundColor $Yellow
         }
     }
     
-    # Generate report
     Write-Host "`n========== UPLOAD COMPLETE ==========" -ForegroundColor $Yellow
-    Write-Host "✓ Successfully uploaded: $($uploadedFiles.Count) file(s)" -ForegroundColor $Green
+    Write-Host "SUCCESS: Uploaded $($uploadedFiles.Count) file(s)" -ForegroundColor $Green
     
     if ($failedFiles.Count -gt 0) {
-        Write-Host "✗ Failed: $($failedFiles.Count) file(s)" -ForegroundColor $Red
+        Write-Host "FAILED: $($failedFiles.Count) file(s)" -ForegroundColor $Red
     }
     
-    # Save URLs to file
     if ($uploadedFiles.Count -gt 0) {
-        $reportPath = Join-Path $script:MediaPath "cloudinary-upload-report.json"
-        $report = @{
+        $projectRoot = Split-Path $script:MediaPath -Parent
+        $mappingPath = Join-Path $projectRoot "cloudinary-urls-mapping.json"
+        
+        $mapping = @{
             uploadDate = (Get-Date -Format "yyyy-MM-dd HH:mm:ss")
             cloudName = $script:CloudName
-            totalFiles = $uploadedFiles.Count
-            files = $uploadedFiles
+            imageMe = $urlMapping.imageMe
+            imageUs = $urlMapping.imageUs
+            videoUs = $urlMapping.videoUs
         }
         
-        $report | ConvertTo-Json | Set-Content -Path $reportPath
-        Write-Host "`n📄 Report saved to: $reportPath" -ForegroundColor $Green
-        
-        # Also create a CSV for easy viewing
-        $csvPath = Join-Path $script:MediaPath "cloudinary-urls.csv"
-        $uploadedFiles | Select-Object @{Name="Local Path"; Expression={$_.FilePath}}, `
-                                       @{Name="Relative Path"; Expression={$_.RelativePath}}, `
-                                       @{Name="Cloudinary URL"; Expression={$_.CloudinaryUrl}} | 
-        Export-Csv -Path $csvPath -NoTypeInformation
-        Write-Host "📊 URL list saved to: $csvPath" -ForegroundColor $Green
+        $mapping | ConvertTo-Json -Depth 10 | Set-Content -Path $mappingPath
+        Write-Host "`nURL Mapping saved to: $mappingPath" -ForegroundColor $Green
+        Write-Host "Use this to update script.js with Cloudinary URLs" -ForegroundColor $Yellow
     }
     
-    Write-Host "`n✓ Script completed!`n" -ForegroundColor $Green
+    Write-Host "`nScript completed!" -ForegroundColor $Green
 }
 
-# Run main function
 Main

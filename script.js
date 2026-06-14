@@ -17,7 +17,7 @@ const galleryData = {
         description: 'A beautiful collection of our most cherished moments together. From romantic getaways to silly adventures, this is our story.',
         year: '2025-Forever',
         rating: 'U/A 18+',
-        cast: 'Two hearts, one journey',
+        cast: 'Tanu, Pranav',
         genres: 'Romance, Adventure, Memories',
         tags: 'Our story, Love, Unforgettable moments',
         sections: [            { title: 'anniversary', id: 'anniversary', items: [
@@ -200,12 +200,12 @@ const galleryData = {
         name: 'Me',
         video: 'videosMe/memories.mp4',
         videoPoster: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781457315/posters/me.png',
-        videoTitle: 'Me',
+        videoTitle: '',
         description: 'A celebration of moments, milestones, and memories that make me who I am. From childhood to today, this is my journey.',
         year: '2005 - Present',
         duration: 'Forever',
         rating: 'U/A 18+',
-        cast: 'The one and only',
+        cast: 'Tanmayee Madduri',
         genres: 'Personal, Adventure, Life',
         tags: 'My story, Memories, Growth',
         sections: [            { title: 'Baby', id: 'baby', items: [
