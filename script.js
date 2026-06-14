@@ -754,8 +754,8 @@ function renderSection(section, sectionIndex) {
         if (isVideo) {
             // Render video with play button overlay
             galleryItem.innerHTML = `
-                <div class="gallery-image-wrapper" style="position: relative;">
-                    <video src="${item.src}" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy"></video>
+                <div class="gallery-image-wrapper gallery-video-wrapper" style="position: relative;">
+                    <video src="${item.src}" style="width: 100%; height: 100%; object-fit: contain; background: #000; display: block;" loading="lazy"></video>
                     <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none;">
                         <div style="width: 60px; height: 60px; background: rgba(229, 9, 20, 0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; color: white;">▶</div>
                     </div>
