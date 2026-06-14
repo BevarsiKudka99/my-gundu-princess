@@ -1,6 +1,6 @@
 {
-  "cloudinaryCloudName": "YOUR_CLOUDINARY_CLOUD_NAME",
-  "cloudinaryUploadPreset": "YOUR_UPLOAD_PRESET",
+  "cloudinaryCloudName": "dwmcugijh",
+  "cloudinaryUploadPreset": "static_page",
   "mediaFolder": "C:\\Path\\To\\Your\\Media\\Uploads",
   "events": {
     "OIA": {

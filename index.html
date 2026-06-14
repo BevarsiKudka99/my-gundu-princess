@@ -4,9 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Story - A Gift For You</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Cursor Spotlight -->
+    <div class="cursor-spotlight" id="cursorSpotlight"></div>
+
     <!-- Loading Screen with Logo -->
     <div id="loadingScreen" class="loading-screen">
         <button id="loadingSignInBtn" class="loading-signin-top-btn">Sign In</button>
@@ -18,7 +24,7 @@
     <!-- Sign-In Screen -->
     <div id="authScreen" class="auth-screen">
         <div class="auth-header">
-            <img src="Logos/Netflix-Logo.jpg" class="auth-logo-top" alt="Netflix Logo">
+            <img src="Logos/Netflix-Logo.png" class="auth-logo-top" alt="Netflix Logo">
         </div>
         
         <div class="auth-main">
@@ -84,7 +90,7 @@
         <nav class="navbar">
             <div class="navbar-left">
                 <div class="navbar-branding">
-                    <img src="Logos/Netflix-Logo.jpg" class="navbar-logo" alt="Netflix Logo">
+                    <img src="Logos/Netflix-Logo.png" class="navbar-logo" alt="Netflix Logo">
                     <span class="logo-small">Birthday Edition</span>
                 </div>
             </div>
@@ -110,16 +116,117 @@
             </div>
         </nav>
 
-        <!-- Video Section -->
-        <div class="video-section">
-            <video id="mainVideo" class="main-video" muted playsinline>
-                <source src="" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div class="video-controls">
-                <input type="range" id="videoProgress" class="video-progress" min="0" max="100" value="0">
+        <!-- Hero Banner Section (Netflix-style) -->
+        <div class="hero-banner" id="heroBanner">
+            <div class="hero-bg-image" id="heroBgImage"></div>
+            <div class="hero-gradient-overlay"></div>
+            <div class="hero-content">
+                <h1 id="heroTitle" class="hero-title">Our Story</h1>
+                <div class="hero-meta-row">
+                    <div class="hero-top10-badge">
+                        <span class="top10-label">TOP</span>
+                        <span class="top10-num">10</span>
+                    </div>
+                    <span id="heroRank" class="hero-rank-text">#1 in Memories Today</span>
+                </div>
+                <p id="heroDescription" class="hero-description">A beautiful collection of our most cherished moments together.</p>
+                <div class="hero-buttons">
+                    <button class="hero-play-btn" id="heroPlayBtn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                        Play
+                    </button>
+                    <button class="hero-info-btn" id="heroInfoBtn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12.01" y2="8"></line><polyline points="12 11 12 16"></polyline></svg>
+                        More Info
+                    </button>
+                </div>
             </div>
-            <h2 id="videoTitle" class="video-title-overlay">Welcome to Our Story</h2>
+            <div id="heroRating" class="hero-rating">U/A 18+</div>
+        </div>
+
+        <!-- Fullscreen Video Modal -->
+        <div id="fullscreenModal" class="fullscreen-modal hidden">
+            <div class="fullscreen-video-container">
+                <button id="fullscreenBackBtn" class="fullscreen-back-btn">← Back</button>
+                <video id="fullscreenVideo" class="fullscreen-video">
+                    <source src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="fullscreen-controls">
+                    <div class="fullscreen-progress-container">
+                        <input type="range" id="fullscreenProgress" class="fullscreen-progress" min="0" max="100" value="0">
+                    </div>
+                    <div class="fullscreen-controls-bottom">
+                        <button id="playPauseBtn" class="fullscreen-control-btn" title="Play/Pause">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <polygon points="5 3 19 12 5 21 5 3" id="playIcon"></polygon>
+                                <rect x="6" y="4" width="4" height="16" id="pauseIcon-1" style="display:none;"></rect>
+                                <rect x="14" y="4" width="4" height="16" id="pauseIcon-2" style="display:none;"></rect>
+                            </svg>
+                        </button>
+                        <div class="fullscreen-time-info">
+                            <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
+                        </div>
+                        <button id="fullscreenExitBtn" class="fullscreen-control-btn" title="Exit Fullscreen" style="margin-left: auto;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M8 3v6H2m14 0V3h6m0 14v6h-6m-8 0H2v-6"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- More Info Modal -->
+        <div id="moreInfoModal" class="moreinfo-backdrop hidden">
+            <div class="moreinfo-modal">
+                <button class="moreinfo-close" id="moreInfoCloseBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+                </button>
+                <div class="moreinfo-hero">
+                    <div class="moreinfo-hero-img" id="moreInfoHeroImg"></div>
+                    <div class="moreinfo-hero-gradient"></div>
+                    <div class="moreinfo-hero-bottom">
+                        <h2 class="moreinfo-title" id="moreInfoTitle"></h2>
+                        <div class="moreinfo-hero-actions">
+                            <button class="moreinfo-play-btn" id="moreInfoPlayBtn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                                Play
+                            </button>
+                            <button class="moreinfo-icon-btn" title="Add to list">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                            </button>
+                            <button class="moreinfo-icon-btn" title="Not for me">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3z"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="moreinfo-body">
+                    <div class="moreinfo-col-left">
+                        <div class="moreinfo-meta-row">
+                            <span class="moreinfo-year" id="moreInfoYear"></span>
+                            <span class="moreinfo-duration" id="moreInfoDuration"></span>
+                            <span class="moreinfo-hd-badge">HD</span>
+                            <span class="moreinfo-rating-badge" id="moreInfoRating"></span>
+                        </div>
+                        <div class="moreinfo-warnings" id="moreInfoWarnings"></div>
+                        <div class="moreinfo-rank-row">
+                            <div class="moreinfo-top10-badge">
+                                <span class="top10-label">TOP</span>
+                                <span class="top10-num">10</span>
+                            </div>
+                            <span class="moreinfo-rank-text" id="moreInfoRank"></span>
+                        </div>
+                        <p class="moreinfo-description" id="moreInfoDescription"></p>
+                    </div>
+                    <div class="moreinfo-col-right">
+                        <p class="moreinfo-meta-detail"><span class="moreinfo-meta-label">Cast: </span><span id="moreInfoCast"></span></p>
+                        <p class="moreinfo-meta-detail"><span class="moreinfo-meta-label">Genres: </span><span id="moreInfoGenres"></span></p>
+                        <p class="moreinfo-meta-detail"><span class="moreinfo-meta-label">This is: </span><span id="moreInfoTags"></span></p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- View Toggle Section -->
@@ -136,12 +243,12 @@
             <!-- Sections will be dynamically generated here -->
         </div>
 
-        <!-- Premium Image Viewer Modal -->
+        <!-- Cinematic Image Viewer Modal -->
         <div id="imageModal" class="image-viewer hidden">
+            <div class="viewer-bg-blur" id="viewerBgBlur"></div>
             <div class="viewer-header">
-                <button class="viewer-back-btn">&larr; Back</button>
+                <button class="viewer-back-btn">← Back</button>
             </div>
-            
             <div class="viewer-container">
                 <button class="viewer-nav-btn viewer-prev-btn">❮</button>
                 <div class="viewer-image-wrapper">
@@ -149,7 +256,6 @@
                 </div>
                 <button class="viewer-nav-btn viewer-next-btn">❯</button>
             </div>
-            
             <div class="viewer-footer">
                 <p id="viewerCaption" class="viewer-caption"></p>
                 <span id="viewerCounter" class="viewer-counter"></span>
@@ -157,6 +263,9 @@
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
