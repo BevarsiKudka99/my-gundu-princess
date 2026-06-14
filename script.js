@@ -10,13 +10,12 @@ const VALID_CREDENTIALS = {
 
 const galleryData = {
     us: {
-        name: 'A journey of love and laughter',
+        name: 'Echo',
         video: 'https://res.cloudinary.com/dwmcugijh/video/upload/v1781456871/videosUs/pei83pnj7u5ivwqe70hk.mp4',
         videoPoster: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781457314/posters/us.png',
-        videoTitle: 'A Journey of Love and Laughter',
+        videoTitle: '',
         description: 'A beautiful collection of our most cherished moments together. From romantic getaways to silly adventures, this is our story.',
-        year: '2026',
-        duration: '',
+        year: '2025-Forever',
         rating: 'U/A 18+',
         cast: 'Two hearts, one journey',
         genres: 'Romance, Adventure, Memories',
@@ -203,8 +202,8 @@ const galleryData = {
         videoPoster: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781457315/posters/me.png',
         videoTitle: 'Me',
         description: 'A celebration of moments, milestones, and memories that make me who I am. From childhood to today, this is my journey.',
-        year: '2026',
-        duration: '4m 35s',
+        year: '2005 - Present',
+        duration: 'Forever',
         rating: 'U/A 18+',
         cast: 'The one and only',
         genres: 'Personal, Adventure, Life',
