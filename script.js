@@ -12,6 +12,7 @@ const galleryData = {
     us: {
         name: 'A journey of love and laughter',
         video: 'https://res.cloudinary.com/dwmcugijh/video/upload/v1781456871/videosUs/pei83pnj7u5ivwqe70hk.mp4',
+        videoPoster: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781457314/posters/us.png',
         sections: [            { title: 'anniversary', id: 'anniversary', items: [
                 { id: 1, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455643/imageUs/anniversary/ann1.jpg', title: 'ann1.jpg' },
                 { id: 2, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455643/imageUs/anniversary/ann10.jpg', title: 'ann10.jpg' },
@@ -191,6 +192,7 @@ const galleryData = {
     me: {
         name: 'Me',
         video: 'videosMe/memories.mp4',
+        videoPoster: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781457315/posters/me.png',
         sections: [            { title: 'Baby', id: 'baby', items: [
                 { id: 1, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455591/imageMe/Baby/baby1.jpg', title: 'baby1.JPG' },
                 { id: 2, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455598/imageMe/Baby/baby2.jpg', title: 'baby2.JPG' },
