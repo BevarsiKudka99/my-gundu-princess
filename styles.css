@@ -1309,10 +1309,6 @@ html {
     margin-bottom: 0;
     transition: all 0.3s ease;
 }
-
-/* Videos maintain aspect ratio without 16:9 constraint */
-.gallery-video-wrapper {
-    aspect-ratio: auto;
 }
 
 .gallery-item:hover .gallery-image-wrapper {
