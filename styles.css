@@ -1215,35 +1215,6 @@ html {
     margin-bottom: 12px;
 }
 
-.moreinfo-top10-badge {
-    background: #e50914;
-    width: 32px;
-    height: 32px;
-    border-radius: 3px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    padding: 2px;
-}
-
-.moreinfo-top10-badge .top10-label {
-    font-size: 6px;
-    font-weight: 900;
-    color: #fff;
-    letter-spacing: 0.8px;
-    line-height: 1;
-    text-transform: uppercase;
-}
-
-.moreinfo-top10-badge .top10-num {
-    font-size: 14px;
-    font-weight: 900;
-    color: #fff;
-    line-height: 1;
-}
-
 .moreinfo-rank-text {
     font-size: 15px;
     font-weight: 700;
