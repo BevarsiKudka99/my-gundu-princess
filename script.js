@@ -747,12 +747,28 @@ function renderSection(section, sectionIndex) {
 
         const galleryItem = document.createElement('div');
         galleryItem.className = 'gallery-item';
+        
+        // Check if item is a video
+        const isVideo = item.src.includes('.mp4') || item.src.includes('/video/');
 
-        galleryItem.innerHTML = `
-            <div class="gallery-image-wrapper">
-                <img src="${item.src}" alt="${item.title}" loading="lazy">
-            </div>
-        `;
+        if (isVideo) {
+            // Render video with play button overlay
+            galleryItem.innerHTML = `
+                <div class="gallery-image-wrapper" style="position: relative;">
+                    <video src="${item.src}" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy"></video>
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none;">
+                        <div style="width: 60px; height: 60px; background: rgba(229, 9, 20, 0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; color: white;">▶</div>
+                    </div>
+                </div>
+            `;
+        } else {
+            // Render image
+            galleryItem.innerHTML = `
+                <div class="gallery-image-wrapper">
+                    <img src="${item.src}" alt="${item.title}" loading="lazy">
+                </div>
+            `;
+        }
 
         galleryItem.addEventListener('click', () => {
             openImageViewer(flatIndex);
@@ -999,12 +1015,29 @@ function openImageViewer(index) {
  */
 function updateViewerImage() {
     const item = allItemsFlat[currentViewerIndex];
-    viewerImage.src = item.src;
+    const viewerVideo = document.getElementById('viewerVideo');
+    const isVideo = item.src.includes('.mp4') || item.src.includes('/video/');
+    
+    if (isVideo) {
+        // Show video, hide image
+        viewerImage.style.display = 'none';
+        viewerVideo.style.display = 'block';
+        viewerVideo.src = item.src;
+        // Update background to video frame (use thumbnail)
+        const bgBlur = document.getElementById('viewerBgBlur');
+        if (bgBlur) bgBlur.style.backgroundImage = `url('${item.src}?fetch_format=auto')`;
+    } else {
+        // Show image, hide video
+        viewerImage.style.display = 'block';
+        viewerVideo.style.display = 'none';
+        viewerImage.src = item.src;
+        // Update cinematic blurred background
+        const bgBlur = document.getElementById('viewerBgBlur');
+        if (bgBlur) bgBlur.style.backgroundImage = `url('${item.src}')`;  
+    }
+    
     viewerCaption.textContent = item.title;
     viewerCounter.textContent = `${currentViewerIndex + 1} / ${allItemsFlat.length}`;
-    // Update cinematic blurred background
-    const bgBlur = document.getElementById('viewerBgBlur');
-    if (bgBlur) bgBlur.style.backgroundImage = `url('${item.src}')`;
 }
 
 /**
