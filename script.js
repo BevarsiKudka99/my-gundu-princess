@@ -507,11 +507,11 @@ const galleryData = {
                 { id: 148, src: 'https://res.cloudinary.com/dwmcugijh/video/upload/v1781455694/imageUs/Gunduuuu/us25.mp4', title: '' },
                 { id: 149, src: 'https://res.cloudinary.com/dwmcugijh/video/upload/v1781455682/imageUs/Gunduuuu/gundu22.mp4', title: '' },
                 { id: 150, src: 'https://res.cloudinary.com/dwmcugijh/video/upload/v1781455679/imageUs/Gunduuuu/gundu21.mp4', title: '' }
-            ] }
+            ] },
             { title: 'posters', id: 'posters', items: [
                 { id: 1, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781457315/posters/me.png', title: '' },
                 { id: 2, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781457314/posters/us.png', title: '' }
-            ] }
+            ] },
             { title: 'samples', id: 'samples', items: [
                 { id: 1, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1779118675/samples/radial_02.png', title: '' },
                 { id: 2, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1779118675/samples/waves.png', title: '' },
@@ -570,11 +570,10 @@ const galleryData = {
                 { id: 55, src: 'https://res.cloudinary.com/dwmcugijh/video/upload/v1779118667/samples/dance-2.mp4', title: '' },
                 { id: 56, src: 'https://res.cloudinary.com/dwmcugijh/video/upload/v1779118667/samples/cld-sample-video.mp4', title: '' },
                 { id: 57, src: 'https://res.cloudinary.com/dwmcugijh/video/upload/v1779118666/samples/sea-turtle.mp4', title: '' }
-            ] }
+            ] },
             { title: 'videosUs', id: 'videosus', items: [
                 { id: 1, src: 'https://res.cloudinary.com/dwmcugijh/video/upload/v1781456871/videosUs/pei83pnj7u5ivwqe70hk.mp4', title: '' }
             ] }
-            ] },
         ]
     }
 };
