@@ -299,7 +299,7 @@ const galleryData = {
                 { id: 24, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1779118676/cld-sample-2.jpg', title: '' },
                 { id: 25, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1779118675/cld-sample.jpg', title: '' },
                 { id: 26, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1779118655/sample.jpg', title: '' }
-            ] }
+            ] },
             { title: 'imageMe', id: 'imageme', items: [
                 { id: 1, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455642/imageMe/Me/me9.jpg', title: '' },
                 { id: 2, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455641/imageMe/Me/me5.jpg', title: '' },
@@ -355,7 +355,7 @@ const galleryData = {
                 { id: 52, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455599/imageMe/Baby/baby3.jpg', title: '' },
                 { id: 53, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455598/imageMe/Baby/baby2.jpg', title: '' },
                 { id: 54, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455591/imageMe/Baby/baby1.jpg', title: '' }
-            ] }
+            ] },
             { title: 'imageUs', id: 'imageus', items: [
                 { id: 1, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455839/imageUs/Wonderla/wonderla9.jpg', title: '' },
                 { id: 2, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455839/imageUs/Wonderla/wonderla8.jpg', title: '' },
