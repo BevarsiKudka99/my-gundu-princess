@@ -1,0 +1,8 @@
+
+# Temporary files
+cloudinary-urls.js
+merge-urls.js
+merge-urls.py
+update-script-js.ps1
+script.js.backup*
+*.backup
