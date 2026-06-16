@@ -20,7 +20,8 @@ const galleryData = {
         cast: 'Tanu, Pranav',
         genres: 'Romance, Adventure, Memories',
         tags: 'Our story, Love, Unforgettable moments',
-        sections: [            { title: 'anniversary', id: 'anniversary', items: [
+        sections: [
+            { title: 'anniversary', id: 'anniversary', items: [
                 { id: 1, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455643/imageUs/anniversary/ann1.jpg', title: 'ann1.jpg' },
                 { id: 2, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455643/imageUs/anniversary/ann10.jpg', title: 'ann10.jpg' },
                 { id: 3, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455644/imageUs/anniversary/ann11.jpg', title: 'ann11.jpg' },
@@ -208,7 +209,8 @@ const galleryData = {
         cast: 'Tanmayee Madduri',
         genres: 'Personal, Adventure, Life',
         tags: 'My story, Memories, Growth',
-        sections: [            { title: 'Baby', id: 'baby', items: [
+        sections: [
+            { title: 'Baby', id: 'baby', items: [
                 { id: 1, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455591/imageMe/Baby/baby1.jpg', title: 'baby1.JPG' },
                 { id: 2, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455598/imageMe/Baby/baby2.jpg', title: 'baby2.JPG' },
                 { id: 3, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455599/imageMe/Baby/baby3.jpg', title: 'baby3.JPG' },
