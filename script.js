@@ -270,8 +270,8 @@ const galleryData = {
                 { id: 20, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455639/imageMe/Me/me25.jpg', title: 'me25.jpg' },
                 { id: 21, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455640/imageMe/Me/me3.jpg', title: 'me3.JPG' },
                 { id: 22, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455641/imageMe/Me/me5.jpg', title: 'me5.JPG' },
-                { id: 23, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455642/imageMe/Me/me9.jpg', title: 'me9.JPG' },
-,
+                { id: 23, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781455642/imageMe/Me/me9.jpg', title: 'me9.JPG' }
+            ] },
             { title: 'Others', id: 'others', items: [
                 { id: 1, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781628010/dance6_ybilwi.jpg', title: '' },
                 { id: 2, src: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781628010/dance7_vekt8d.jpg', title: '' },
