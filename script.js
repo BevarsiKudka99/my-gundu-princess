@@ -11,7 +11,7 @@ const VALID_CREDENTIALS = {
 const galleryData = {
     us: {
         name: 'Echo',
-        video: 'https://res.cloudinary.com/dwmcugijh/video/upload/v1781456871/videosUs/pei83pnj7u5ivwqe70hk.mp4',
+        video: 'https://res.cloudinary.com/dwmcugijh/video/upload/v1781695749/VN20260617_142501_ke7yap.mp4',
         videoPoster: 'https://res.cloudinary.com/dwmcugijh/image/upload/v1781457314/posters/us.png',
         videoTitle: '',
         description: 'A beautiful collection of our most cherished moments together. From romantic getaways to silly adventures, this is our story.',
