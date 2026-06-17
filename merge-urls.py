@@ -25,12 +25,16 @@ if not url_matches:
 # Parse into items
 items = [{'url': url, 'name': name, 'type': url_type} for url, name, url_type in url_matches]
 
-# Group by folder from URL
+# Group by folder from URL (including subfolders)
 folders = {}
 for item in items:
-    # Extract folder from URL: /upload/v123/folder/file
-    match = re.search(r'upload/[^/]+/([^/]+)/', item['url'])
-    folder = match.group(1) if match else 'Others'
+    # Extract folder path from URL: /upload/v123/folder/subfolder/file
+    # We want to capture everything between /upload/version/ and the filename
+    match = re.search(r'upload/[^/]+/(.*?)/[^/]+$', item['url'])
+    if match:
+        folder = match.group(1)
+    else:
+        folder = 'Others'
     
     if folder not in folders:
         folders[folder] = []
@@ -47,14 +51,15 @@ with open('script.js', 'r', encoding='utf-8') as f:
 # Create new sections for new folders
 new_sections = []
 for folder_name in sorted(folders.keys()):
-    # Skip if already in script.js
-    if f"id: '{folder_name}'" in script_content or f"id: '{folder_name.lower()}'" in script_content:
+    folder_items = folders[folder_name]
+    clean_name = folder_name.replace('_', ' ').replace('/', ' - ')
+    # Create section ID from folder path (convert to lowercase, replace / with -)
+    section_id = folder_name.lower().replace('/', ' - ')
+    
+    # Check if this section already exists in script.js
+    if f"id: '{section_id}'" in script_content:
         print(f"  → Skipping '{folder_name}' (already exists)")
         continue
-    
-    folder_items = folders[folder_name]
-    clean_name = folder_name.replace('_', ' ')
-    section_id = folder_name.lower()
     
     items_str = ""
     for idx, item in enumerate(folder_items, 1):
