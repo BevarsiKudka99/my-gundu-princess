@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reorder Tool</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #141414; color: #fff; font-family: Inter, Arial, sans-serif; min-height: 100vh; }
+
+/* ── Header ── */
+header { background: #000; padding: 14px 24px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid #2a2a2a; }
+.logo { color: #e50914; font-size: 20px; font-weight: 900; letter-spacing: 1px; white-space: nowrap; }
+.controls { display: flex; align-items: flex-end; gap: 12px; flex-wrap: wrap; flex: 1; }
+.ctrl-group { display: flex; flex-direction: column; gap: 4px; }
+.ctrl-label { font-size: 11px; color: #777; text-transform: uppercase; letter-spacing: .5px; }
+select { background: #1e1e1e; color: #fff; border: 1px solid #3a3a3a; border-radius: 6px; padding: 7px 12px; font-size: 13px; cursor: pointer; min-width: 160px; }
+select:focus { outline: none; border-color: #e50914; }
+.header-actions { display: flex; gap: 8px; align-items: center; margin-left: auto; }
+.badge { background: #2a2a2a; color: #aaa; padding: 6px 12px; border-radius: 20px; font-size: 12px; white-space: nowrap; }
+.badge span { color: #fff; font-weight: 700; }
+.btn { padding: 8px 18px; border-radius: 6px; border: none; cursor: pointer; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; transition: opacity .15s, transform .1s; white-space: nowrap; }
+.btn:hover { opacity: .85; }
+.btn:active { transform: scale(.97); }
+.btn-red { background: #e50914; color: #fff; }
+.btn-dark { background: #2a2a2a; color: #ddd; }
+.btn-green { background: #1db954; color: #fff; }
+.changes-dot { width: 8px; height: 8px; background: #e50914; border-radius: 50%; display: none; }
+.changes-dot.active { display: inline-block; }
+
+/* ── Info bar ── */
+.info-bar { background: #1a1a1a; border-bottom: 1px solid #2a2a2a; padding: 10px 24px; font-size: 13px; color: #888; display: none; }
+.info-bar strong { color: #ccc; }
+
+/* ── Main ── */
+main { padding: 20px 24px; }
+
+/* ── Upload zone ── */
+.upload-zone { border: 2px dashed #333; border-radius: 12px; padding: 60px 40px; text-align: center; max-width: 500px; margin: 60px auto; cursor: pointer; transition: border-color .2s, background .2s; }
+.upload-zone:hover { border-color: #e50914; background: #1a0000; }
+.upload-zone h2 { font-size: 20px; margin-bottom: 8px; }
+.upload-zone p { color: #777; font-size: 14px; line-height: 1.6; }
+#fileInput { display: none; }
+.upload-btn { margin-top: 20px; background: #e50914; color: #fff; border: none; padding: 12px 28px; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; }
+
+/* ── Grid ── */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 10px; display: none; }
+.thumb { background: #1e1e1e; border-radius: 8px; overflow: hidden; cursor: grab; border: 2px solid transparent; transition: border-color .15s, box-shadow .15s; user-select: none; position: relative; }
+.thumb:hover { border-color: #555; }
+.thumb.dragging { opacity: .35; cursor: grabbing; }
+.thumb.drag-over { border-color: #e50914; box-shadow: 0 0 0 3px rgba(229,9,20,.25); }
+.thumb img { width: 100%; height: 120px; object-fit: cover; display: block; pointer-events: none; background: #111; }
+.thumb-video-wrap { width: 100%; height: 120px; background: #111; position: relative; overflow: hidden; pointer-events: none; }
+.thumb-video-wrap video { width: 100%; height: 100%; object-fit: cover; }
+.video-badge { position: absolute; top: 6px; right: 6px; background: rgba(229,9,20,.9); color: #fff; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 4px; }
+.thumb-footer { padding: 7px 8px 8px; display: flex; align-items: center; gap: 6px; }
+.thumb-num { background: #e50914; color: #fff; font-size: 11px; font-weight: 800; border-radius: 4px; padding: 2px 6px; flex-shrink: 0; min-width: 26px; text-align: center; }
+.thumb-name { font-size: 11px; color: #bbb; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.empty-msg { color: #555; text-align: center; padding: 60px; font-size: 15px; grid-column: 1/-1; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">&#9654; REORDER</div>
+  <div class="controls" id="headerControls" style="display:none">
+    <div class="ctrl-group">
+      <span class="ctrl-label">Profile</span>
+      <select id="profileSelect"></select>
+    </div>
+    <div class="ctrl-group">
+      <span class="ctrl-label">Section</span>
+      <select id="sectionSelect"></select>
+    </div>
+    <div class="badge">Items: <span id="countBadge">0</span></div>
+  </div>
+  <div class="header-actions" id="headerActions" style="display:none">
+    <button class="btn btn-dark" onclick="resetSection()">&#8635; Reset</button>
+    <button class="btn btn-green" onclick="exportJSON()">
+      <span class="changes-dot" id="changesDot"></span>
+      &#8595; Export Order JSON
+    </button>
+  </div>
+</header>
+
+<div class="info-bar" id="infoBar">
+  <strong>Drag thumbnails</strong> to reorder &nbsp;·&nbsp;
+  Switch sections freely (changes are remembered) &nbsp;·&nbsp;
+  When done, click <strong>Export Order JSON</strong> — it saves ALL your reorders into one .json file &nbsp;·&nbsp;
+  Share that file with Copilot to update script.js
+</div>
+
+<main id="main">
+  <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
+    <h2>Select your script.js</h2>
+    <p>Click here to load the file.<br>Everything runs locally in your browser — nothing is uploaded anywhere.</p>
+    <button class="upload-btn" type="button">Choose script.js</button>
+  </div>
+  <input type="file" id="fileInput" accept=".js">
+  <div class="grid" id="grid"></div>
+</main>
+
+<script>
+// ── State ──
+let galleryData = null;
+let currentItems = [];
+let originalItems = [];
+let allChanges = {};  // key: "profile::sectionId" → value: ordered items array
+let dragSrcIndex = null;
+
+// ── File load ──
+document.getElementById('fileInput').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => parseScript(ev.target.result);
+  reader.readAsText(file);
+});
+
+function extractGalleryDataRaw(text) {
+  const marker = 'const galleryData = ';
+  const start = text.indexOf(marker);
+  if (start === -1) return null;
+  const objStart = text.indexOf('{', start);
+  let depth = 0, inStr = false, strCh = '', escaped = false;
+  for (let i = objStart; i < text.length; i++) {
+    const ch = text[i];
+    if (escaped) { escaped = false; continue; }
+    if (ch === '\\' && inStr) { escaped = true; continue; }
+    if (inStr) { if (ch === strCh) inStr = false; continue; }
+    if (ch === '"' || ch === "'" || ch === '`') { inStr = true; strCh = ch; continue; }
+    if (ch === '{') depth++;
+    else if (ch === '}') { depth--; if (depth === 0) return text.slice(objStart, i + 1); }
+  }
+  return null;
+}
+
+function parseScript(text) {
+  const raw = extractGalleryDataRaw(text);
+  if (!raw) { alert('Could not find "const galleryData" in the file.'); return; }
+  try {
+    galleryData = (0, eval)('(' + raw + ')');
+  } catch(e) {
+    alert('Could not parse galleryData:\n' + e.message + '\n\nFirst 200 chars of extracted text:\n' + raw.slice(0, 200));
+    return;
+  }
+  document.getElementById('uploadZone').style.display = 'none';
+  document.getElementById('grid').style.display = 'grid';
+  document.getElementById('headerControls').style.display = 'flex';
+  document.getElementById('headerActions').style.display = 'flex';
+  document.getElementById('infoBar').style.display = 'block';
+  buildProfileSelect();
+}
+
+// ── Selectors ──
+function buildProfileSelect() {
+  const sel = document.getElementById('profileSelect');
+  sel.innerHTML = '';
+  Object.keys(galleryData).forEach(key => {
+    const opt = document.createElement('option');
+    opt.value = key;
+    opt.textContent = galleryData[key].name || key;
+    sel.appendChild(opt);
+  });
+  sel.addEventListener('change', buildSectionSelect);
+  buildSectionSelect();
+}
+
+function buildSectionSelect() {
+  const profileKey = document.getElementById('profileSelect').value;
+  const sections = galleryData[profileKey].sections || [];
+  const sel = document.getElementById('sectionSelect');
+  sel.innerHTML = '';
+  sections.forEach(sec => {
+    const opt = document.createElement('option');
+    opt.value = sec.id;
+    const key = profileKey + '::' + sec.id;
+    const mark = allChanges[key] ? ' ✎' : '';
+    opt.textContent = sec.title + ' (' + sec.items.length + ')' + mark;
+    sel.appendChild(opt);
+  });
+  sel.removeEventListener('change', loadSection);
+  sel.addEventListener('change', loadSection);
+  loadSection();
+}
+
+function loadSection() {
+  const profileKey = document.getElementById('profileSelect').value;
+  const sectionId = document.getElementById('sectionSelect').value;
+  const section = (galleryData[profileKey].sections || []).find(s => s.id === sectionId);
+  if (!section) return;
+  const key = profileKey + '::' + sectionId;
+  const source = allChanges[key] || section.items;
+  originalItems = section.items.map(i => ({...i}));
+  currentItems = source.map(i => ({...i}));
+  document.getElementById('countBadge').textContent = currentItems.length;
+  renderGrid();
+}
+
+// ── Grid ──
+function renderGrid() {
+  const grid = document.getElementById('grid');
+  grid.innerHTML = '';
+  if (!currentItems.length) {
+    grid.innerHTML = '<div class="empty-msg">No items in this section.</div>';
+    return;
+  }
+  currentItems.forEach((item, idx) => grid.appendChild(makeThumb(item, idx)));
+  setupDragDrop();
+}
+
+function makeThumb(item, idx) {
+  const isVideo = item.src.includes('.mp4') || item.src.includes('/video/');
+  const div = document.createElement('div');
+  div.className = 'thumb';
+  div.draggable = true;
+  div.dataset.index = idx;
+  let thumbSrc = item.src;
+  if (!isVideo && thumbSrc.includes('res.cloudinary.com')) {
+    thumbSrc = thumbSrc.replace('/upload/', '/upload/w_220,h_130,c_fill/');
+  }
+  const name = item.title || item.src.split('/').pop();
+  const mediaHTML = isVideo
+    ? `<div class="thumb-video-wrap"><video src="${item.src}#t=0.5" preload="metadata" muted playsinline></video><div class="video-badge">&#9654; VIDEO</div></div>`
+    : `<img src="${thumbSrc}" alt="${name}" loading="lazy">`;
+  div.innerHTML = `${mediaHTML}<div class="thumb-footer"><span class="thumb-num">${idx+1}</span><span class="thumb-name" title="${name}">${name}</span></div>`;
+  return div;
+}
+
+// ── Drag & Drop ──
+function setupDragDrop() {
+  document.querySelectorAll('.thumb').forEach(th => {
+    th.addEventListener('dragstart', e => {
+      dragSrcIndex = +th.dataset.index;
+      th.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+    });
+    th.addEventListener('dragover', e => { e.preventDefault(); th.classList.add('drag-over'); });
+    th.addEventListener('dragleave', () => th.classList.remove('drag-over'));
+    th.addEventListener('drop', e => {
+      e.preventDefault();
+      th.classList.remove('drag-over');
+      const dropIdx = +th.dataset.index;
+      if (dragSrcIndex === dropIdx) return;
+      const moved = currentItems.splice(dragSrcIndex, 1)[0];
+      currentItems.splice(dropIdx, 0, moved);
+      saveChanges();
+      renderGrid();
+    });
+    th.addEventListener('dragend', () => {
+      document.querySelectorAll('.thumb').forEach(t => t.classList.remove('dragging','drag-over'));
+    });
+  });
+}
+
+function saveChanges() {
+  const profileKey = document.getElementById('profileSelect').value;
+  const sectionId = document.getElementById('sectionSelect').value;
+  const key = profileKey + '::' + sectionId;
+  allChanges[key] = currentItems.map(i => ({...i}));
+  document.getElementById('changesDot').classList.add('active');
+  updateSectionMarkers();
+}
+
+function updateSectionMarkers() {
+  const profileKey = document.getElementById('profileSelect').value;
+  const sections = galleryData[profileKey].sections || [];
+  const opts = document.getElementById('sectionSelect').options;
+  sections.forEach((sec, i) => {
+    const key = profileKey + '::' + sec.id;
+    const mark = allChanges[key] ? ' ✎' : '';
+    if (opts[i]) opts[i].textContent = sec.title + ' (' + sec.items.length + ')' + mark;
+  });
+}
+
+// ── Reset ──
+function resetSection() {
+  const profileKey = document.getElementById('profileSelect').value;
+  const sectionId = document.getElementById('sectionSelect').value;
+  const key = profileKey + '::' + sectionId;
+  delete allChanges[key];
+  currentItems = originalItems.map(i => ({...i}));
+  document.getElementById('changesDot').classList.toggle('active', Object.keys(allChanges).length > 0);
+  updateSectionMarkers();
+  renderGrid();
+}
+
+// ── Export JSON ──
+function exportJSON() {
+  if (!Object.keys(allChanges).length) {
+    alert('No changes yet! Drag some thumbnails to reorder first.');
+    return;
+  }
+  const output = { _info: 'Reorder file. Share this with Copilot to update script.js.', changes: [] };
+  for (const key of Object.keys(allChanges)) {
+    const [profile, ...rest] = key.split('::');
+    const sectionId = rest.join('::');
+    output.changes.push({
+      profile: profile,
+      sectionId: sectionId,
+      items: allChanges[key].map((item, i) => ({ id: i+1, src: item.src, title: item.title }))
+    });
+  }
+  const blob = new Blob([JSON.stringify(output, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'reorder-' + new Date().toISOString().slice(0,10) + '.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+</script>
+</body>
+</html>
