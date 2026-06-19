@@ -2013,6 +2013,13 @@ html {
     border-color: rgba(255, 255, 255, 0.5);
 }
 
+.auth-hint {
+    color: #aaa;
+    font-size: 12px;
+    margin-top: 6px;
+    margin-bottom: 2px;
+}
+
 .auth-error {
     color: #ff6b6b;
     font-size: 14px;
