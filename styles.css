@@ -48,11 +48,17 @@ html, body {
     background-color: var(--bg-dark);
     color: var(--text-light);
     overflow-x: hidden;
-    scrollbar-gutter: stable;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none; /* Chrome/Safari/Opera */
 }
 
 html {
-    scrollbar-gutter: stable;
+    scrollbar-gutter: auto;
 }
 
 /* ============================================

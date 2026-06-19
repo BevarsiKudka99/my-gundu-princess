@@ -4,8 +4,8 @@
 
 // HARDCODED CREDENTIALS - EDIT THESE TO CHANGE LOGIN
 const VALID_CREDENTIALS = {
-    username: 'aa',
-    password: 'aa'
+    username: 'panda',
+    password: '19042025'
 };
 
 const galleryData = {
