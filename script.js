@@ -1236,15 +1236,40 @@ function closeFullscreenVideo() {
     fullscreenModal.classList.add('hidden');
     fullscreenVideo.pause();
     fullscreenVideo.src = '';
+    fullscreenVideo.style.display = '';
+    document.getElementById('fullscreenFallbackImg').style.display = 'none';
+    document.querySelector('.fullscreen-controls').style.display = '';
+    if (document.fullscreenElement) {
+        document.exitFullscreen().catch(() => {});
+    }
     updateBodyOverflow();
 }
 
 // Open fullscreen video
 function openFullscreenVideo() {
+    const fallbackImg = document.getElementById('fullscreenFallbackImg');
+    const controls = document.querySelector('.fullscreen-controls');
+    fallbackImg.style.display = 'none';
+    fullscreenVideo.style.display = '';
+    controls.style.display = '';
+
     fullscreenModal.classList.remove('hidden');
     fullscreenVideo.src = currentVideoSrc;
     fullscreenVideo.currentTime = 0;
     updateBodyOverflow();
+
+    // Request native OS-level fullscreen on the modal
+    if (fullscreenModal.requestFullscreen) {
+        fullscreenModal.requestFullscreen().catch(() => {});
+    } else if (fullscreenModal.webkitRequestFullscreen) {
+        fullscreenModal.webkitRequestFullscreen();
+    }
+
+    fullscreenVideo.onerror = function () {
+        fullscreenVideo.style.display = 'none';
+        controls.style.display = 'none';
+        fallbackImg.style.display = 'block';
+    };
 
     fullscreenVideo.play().catch(err => {
         console.log('Play error:', err);
@@ -1341,6 +1366,13 @@ fullscreenVideo.addEventListener('loadedmetadata', () => {
 // Close fullscreen with ESC key
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && !fullscreenModal.classList.contains('hidden')) {
+        closeFullscreenVideo();
+    }
+});
+
+// Sync modal close when native fullscreen is exited (e.g. via browser Esc)
+document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement && !fullscreenModal.classList.contains('hidden')) {
         closeFullscreenVideo();
     }
 });
